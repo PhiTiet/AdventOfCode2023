@@ -8,7 +8,7 @@ public class FileReader {
 
     public static final String NEW_LINE = "\r\n";
 
-    public List<String> getLines(String path){
+    public List<String> getLines(String path) {
         InputStream is = FileReader.class.getResourceAsStream(path);
 
         String str;

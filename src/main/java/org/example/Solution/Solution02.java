@@ -9,11 +9,11 @@ import java.util.List;
 public class Solution02 {
     private final FileReader fileReader = new FileReader();
 
-    public int solve(String path, CubeUpperLimit cubeUpperLimit){
+    public int solve(String path, CubeUpperLimit cubeUpperLimit) {
         var games = getGames(path);
         var solution = 0;
-        for (var game : games){
-            if (game.possible(cubeUpperLimit)){
+        for (var game : games) {
+            if (game.possible(cubeUpperLimit)) {
                 solution += game.getId();
             }
         }
@@ -21,11 +21,11 @@ public class Solution02 {
     }
 
 
-    public int solvePartTwo(String path){
+    public int solvePartTwo(String path) {
         return getGames(path).stream()
-            .map(Game::getCubeUpperLimit)
-            .map(CubeUpperLimit::getPower)
-            .reduce(0, Integer::sum);
+                .map(Game::getCubeUpperLimit)
+                .map(CubeUpperLimit::getPower)
+                .reduce(0, Integer::sum);
     }
 
     private List<Game> getGames(String path) {
