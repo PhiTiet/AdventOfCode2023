@@ -6,7 +6,7 @@ import org.example.Solution.model.Game;
 
 import java.util.List;
 
-public class Solution02 {
+public class Day02Solver {
     private final FileReader fileReader = new FileReader();
 
     public int solve(String path, CubeUpperLimit cubeUpperLimit) {
@@ -26,7 +26,7 @@ public class Solution02 {
     }
 
     private List<Game> getGames(String path) {
-        return fileReader.getLines(path).stream().map(Solution02::getGame).toList();
+        return fileReader.getLines(path).stream().map(Day02Solver::getGame).toList();
     }
 
     private static Game getGame(String l) {
