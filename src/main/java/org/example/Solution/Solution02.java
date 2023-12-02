@@ -11,13 +11,10 @@ public class Solution02 {
 
     public int solve(String path, CubeUpperLimit cubeUpperLimit) {
         var games = getGames(path);
-        var solution = 0;
-        for (var game : games) {
-            if (game.possible(cubeUpperLimit)) {
-                solution += game.getGameId();
-            }
-        }
-        return solution;
+        return games.stream()
+                .filter(game ->  game.possible(cubeUpperLimit))
+                .map(Game::getGameId)
+                .reduce(0, Integer::sum);
     }
 
 
