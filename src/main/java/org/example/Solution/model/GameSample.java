@@ -28,4 +28,7 @@ public class GameSample {
             }
         }
     }
+    public boolean isPossible(CubeUpperLimit limit){
+        return limit.blue() >= blue && limit.green() >= green && limit.red() >= red;
+    }
 }

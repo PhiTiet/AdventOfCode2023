@@ -36,17 +36,6 @@ public class Game {
     }
 
     public boolean possible(CubeUpperLimit limit){
-        for (var sample : samples){
-            if (limit.blue() < sample.getBlue()){
-                return false;
-            }
-            if (limit.green() < sample.getGreen()){
-                return false;
-            }
-            if (limit.red() < sample.getRed()){
-                return false;
-            }
-        }
-        return true;
+        return samples.stream().allMatch(a -> a.isPossible(limit));
     }
 }
