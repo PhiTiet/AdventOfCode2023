@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 @Getter
 public class Game {
     public static final String DELIMITER = "; ";
-    private final int id;
+    private final int gameId;
     private final List<GameSample> samples;
 
-    public Game(int id, String line) {
-        this.id = id;
+    public Game(int gameId, String line) {
+        this.gameId = gameId;
         samples = Stream.of(line.split(DELIMITER)).map(GameSample::new).toList();
     }
 

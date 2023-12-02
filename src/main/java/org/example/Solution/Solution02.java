@@ -14,7 +14,7 @@ public class Solution02 {
         var solution = 0;
         for (var game : games) {
             if (game.possible(cubeUpperLimit)) {
-                solution += game.getId();
+                solution += game.getGameId();
             }
         }
         return solution;
