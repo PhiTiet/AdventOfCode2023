@@ -1,4 +1,4 @@
-package org.example.Solution.model;
+package org.example.Solution.day02.model;
 
 import lombok.Getter;
 

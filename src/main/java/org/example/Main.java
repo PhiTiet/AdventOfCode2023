@@ -1,16 +1,20 @@
 package org.example;
 
 
-import org.example.Solution.Day02Solver;
-import org.example.Solution.model.CubeUpperLimit;
+import org.example.Solution.day02.Day02Solver;
+import org.example.Solution.day04.Day04Solver;
 
 public class Main {
 
-    public static final String DAY_TWO = "/day02.txt";
-
     public static void main(String[] args) {
+
         var day02Solver = new Day02Solver();
-        System.out.println(day02Solver.solve(DAY_TWO, new CubeUpperLimit(14, 13, 12)));
-        System.out.println(day02Solver.solvePartTwo(DAY_TWO));
+        day02Solver.solvePartOne();
+        day02Solver.solvePartTwo();
+
+        var day04Solver = new Day04Solver();
+        day04Solver.solvePartOne();
+        day04Solver.solvePartTwo();
+
     }
 }

@@ -1,4 +1,4 @@
-package org.example.Solution.model;
+package org.example.Solution.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
