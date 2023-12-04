@@ -1,5 +1,6 @@
 package org.example.Solution.day04;
 
+import org.example.Solution.DayXSolver;
 import org.example.Solution.day04.model.ScratchCard;
 import org.example.Solution.utils.FileReader;
 
@@ -8,24 +9,23 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class Day04Solver {
+public class Day04Solver implements DayXSolver {
     private final FileReader fileReader = new FileReader();
     private static final String PATH = "/day04.txt";
 
-    public void solvePartOne() {
+    @Override
+    public Integer solvePartOne() {
         List<ScratchCard> cards = getScratchCards();
 
-        var answer = cards.stream().map(ScratchCard::getScore).reduce(0, Integer::sum);
-        System.out.println(answer);
+        return cards.stream().map(ScratchCard::getScore).reduce(0, Integer::sum);
     }
 
-    public void solvePartTwo(){
+    @Override
+    public Integer solvePartTwo(){
         List<Integer> intersections = getScratchCards().stream()
                 .map(ScratchCard::getIntersection)
                 .toList();
-        var answer = calculateCopies(intersections);
-        System.out.println(answer);
-
+        return calculateCopies(intersections);
     }
 
     private Integer calculateCopies(List<Integer> intersections) {
