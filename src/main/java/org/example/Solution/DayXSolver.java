@@ -1,6 +1,7 @@
 package org.example.Solution;
 
 public interface DayXSolver {
+    //TODO INTRODUCE SOLUTION CLASS WITH GENERIC TYPE ANSWER & PRINT FUNCTION
     <T> T partOneSolution();
     <T> T partTwoSolution();
 
