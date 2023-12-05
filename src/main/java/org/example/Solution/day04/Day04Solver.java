@@ -14,14 +14,14 @@ public class Day04Solver implements DayXSolver {
     private static final String PATH = "/day04.txt";
 
     @Override
-    public Integer solvePartOne() {
+    public Integer partOneSolution() {
         List<ScratchCard> cards = getScratchCards();
 
         return cards.stream().map(ScratchCard::getScore).reduce(0, Integer::sum);
     }
 
     @Override
-    public Integer solvePartTwo(){
+    public Integer partTwoSolution(){
         List<Integer> intersections = getScratchCards().stream()
                 .map(ScratchCard::getIntersection)
                 .toList();

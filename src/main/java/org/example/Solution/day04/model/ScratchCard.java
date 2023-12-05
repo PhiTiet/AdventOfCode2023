@@ -3,6 +3,8 @@ package org.example.Solution.day04.model;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.Math.*;
+
 public class ScratchCard {
     private static final String WHITESPACE = "\\s+";
     private static final String CARD_SPLIT = "\\|";
@@ -17,12 +19,12 @@ public class ScratchCard {
     }
 
     public int getIntersection(){
-        return numbers.stream().filter(winningNumbers::contains).toList().size();
+        return toIntExact(numbers.stream().filter(winningNumbers::contains).count());
     }
 
     public int getScore(){
         var intersections = getIntersection();
-        return intersections == 0 ? 0 : (int) Math.pow(2, intersections - 1);
+        return intersections == 0 ? 0 : (int) pow(2, intersections - 1);
     }
 
     private List<String> bisectLineAndTrim(String line) {

@@ -13,7 +13,7 @@ public class Day02Solver implements DayXSolver {
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
 
     @Override
-    public Integer solvePartOne() {
+    public Integer partOneSolution() {
         var games = getGames();
         return  games.stream()
                 .filter(game ->  game.possible(cubeUpperLimit))
@@ -22,7 +22,7 @@ public class Day02Solver implements DayXSolver {
     }
 
     @Override
-    public Integer solvePartTwo() {
+    public Integer partTwoSolution() {
         return getGames().stream()
                 .map(Game::getCubeUpperLimit)
                 .map(CubeUpperLimit::getPower)
