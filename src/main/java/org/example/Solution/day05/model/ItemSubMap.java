@@ -40,23 +40,23 @@ public class ItemSubMap {
         return destination.getMinimum() - source.getMinimum();
     }
 
-    public ArrayList<Range<Long>> unmappedValues(Range<Long> current) {
-        if (!source.isOverlappedBy(current)){
-            return ArrayListOf(current);
+    public ArrayList<Range<Long>> unmappedValues(Range<Long> range) {
+        if (!source.isOverlappedBy(range)){
+            return ArrayListOf(range);
         }
-        var intersect = source.intersectionWith(current);
+        var intersect = source.intersectionWith(range);
 
-        if (isInclusiveMiddleSubset(current, source)){
+        if (isInclusiveMiddleSubset(range, source)){
             return new ArrayList<>();
         }
-        if (isMiddleSubset(intersect, current)){
-            return ArrayListOf(Range.of(current.getMinimum(), intersect.getMinimum() - 1), Range.of(intersect.getMaximum() + 1, current.getMaximum()));
+        if (isMiddleSubset(intersect, range)){
+            return ArrayListOf(Range.of(range.getMinimum(), intersect.getMinimum() - 1), Range.of(intersect.getMaximum() + 1, range.getMaximum()));
         }
-        if (current.getMinimum().equals(intersect.getMinimum())){
-            return ArrayListOf(Range.of(intersect.getMaximum() + 1, current.getMaximum()));
+        if (range.getMinimum().equals(intersect.getMinimum())){
+            return ArrayListOf(Range.of(intersect.getMaximum() + 1, range.getMaximum()));
         }
-        if (current.getMaximum().equals(intersect.getMaximum())){
-            return ArrayListOf(Range.of(current.getMinimum(), intersect.getMinimum() - 1));
+        if (range.getMaximum().equals(intersect.getMaximum())){
+            return ArrayListOf(Range.of(range.getMinimum(), intersect.getMinimum() - 1));
         }
         throw new IllegalStateException("bruh");
 
