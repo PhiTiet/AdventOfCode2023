@@ -21,6 +21,7 @@ public class Main {
                 new Day05Solver(),
                 new Day06Solver(),
                 new Day07Solver()).reversed();
+        
         solvers.get(0).printSolutions();
 
         if (!printAll){
