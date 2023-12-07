@@ -32,10 +32,9 @@ public class Hand implements Comparable<Hand>{
         var countMap = getCountMap(cards);
 
         if (!countMap.containsKey(JOKER_CARD) || countMap.get(JOKER_CARD) == 5){
-            return getCountMap(cards);
+            return countMap;
         }
-        var numJokers = countMap.get(JOKER_CARD);
-        countMap.remove(JOKER_CARD);
+        var numJokers = countMap.remove(JOKER_CARD);
         Card mostCopiesOfCard = Collections.max(countMap.entrySet(), Map.Entry.comparingByValue()).getKey();
         Long mostCopiesOfCardAmount = countMap.get(mostCopiesOfCard);
         countMap.put(mostCopiesOfCard, mostCopiesOfCardAmount + numJokers);
