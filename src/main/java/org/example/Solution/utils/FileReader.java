@@ -3,6 +3,7 @@ package org.example.Solution.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import static org.example.Solution.utils.RegexUtils.*;
 
@@ -17,7 +18,7 @@ public class FileReader {
 
         String str;
         try {
-            str = new String(is.readAllBytes());
+            str = new String(Objects.requireNonNull(is).readAllBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
