@@ -9,7 +9,8 @@ import org.example.Solution.utils.FileReader;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static org.example.Solution.utils.AdventPart.*;
+import static java.util.Collections.reverseOrder;
+import static org.example.Solution.utils.AdventPart.PART_ONE;
 import static org.example.Solution.utils.AdventPart.PART_TWO;
 
 public class Day07Solver implements DayXSolver {
@@ -20,7 +21,9 @@ public class Day07Solver implements DayXSolver {
     public Long partOneSolution() {
         List<String> lines = fileReader.getLines(PATH);
         List<Hand> hands = getHands(lines, PART_ONE);
-        List<Hand> sorted = hands.stream().sorted().toList().reversed();
+        List<Hand> sorted = hands
+                .stream().sorted(reverseOrder())
+                .toList();
         return getWinnings(sorted);
     }
 
@@ -28,7 +31,9 @@ public class Day07Solver implements DayXSolver {
     public Long partTwoSolution() {
         List<String> lines = fileReader.getLines(PATH);
         List<Hand> hands = getHands(lines, PART_TWO);
-        var sorted = hands.stream().sorted(new PartTwoHandComparator()).toList().reversed();
+        var sorted = hands.stream()
+                .sorted(reverseOrder(new PartTwoHandComparator()))
+                .toList();
         return getWinnings(sorted);
     }
 

@@ -4,12 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.example.Solution.utils.AdventPart;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.max;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
+import static org.example.Solution.day07.model.HandType.*;
+import static org.example.Solution.utils.AdventPart.*;
+
 @Getter
 @AllArgsConstructor
 public class Hand implements Comparable<Hand>{
@@ -20,9 +23,13 @@ public class Hand implements Comparable<Hand>{
     private final Long bet;
 
     public static Hand handPart(String cardString, String betString, AdventPart part) {
-        var bet = getBet(betString);
-        var cards = getCards(cardString);
-        var countMap = part == AdventPart.PART_ONE ? getCountMap(cards) : jokerSubstituteCountMap(cards);
+        var bet = Long.parseLong(betString);
+        var cards = cardString.chars()
+                .mapToObj(c -> String.valueOf((char) c))
+                .map(Card::fromString)
+                .toList();
+
+        var countMap = part == PART_ONE ? getCountMap(cards) : jokerSubstituteCountMap(cards);
         var handType = determineHandType(countMap);
 
         return new Hand(cards, handType, bet);
@@ -31,50 +38,39 @@ public class Hand implements Comparable<Hand>{
     private static Map<Card, Long> jokerSubstituteCountMap(List<Card> cards) {
         var countMap = getCountMap(cards);
 
-        if (!countMap.containsKey(JOKER_CARD) || countMap.get(JOKER_CARD) == 5){
+        if (!countMap.containsKey(JOKER_CARD) || countMap.get(JOKER_CARD) == cards.size()){
             return countMap;
         }
         var numJokers = countMap.remove(JOKER_CARD);
-        Card mostCopiesOfCard = Collections.max(countMap.entrySet(), Map.Entry.comparingByValue()).getKey();
+        Card mostCopiesOfCard = max(countMap.entrySet(), Map.Entry.comparingByValue()).getKey();
         Long mostCopiesOfCardAmount = countMap.get(mostCopiesOfCard);
         countMap.put(mostCopiesOfCard, mostCopiesOfCardAmount + numJokers);
         return countMap;
     }
 
-    private static long getBet(String betString) {
-        return Long.parseLong(betString);
-    }
-
-    private static List<Card> getCards(String cardString) {
-        return cardString.chars()
-                .mapToObj(c -> String.valueOf((char) c))
-                .map(Card::fromString)
-                .toList();
-    }
-
     private static HandType determineHandType(Map<Card, Long> countMap) {
         int mapSize = countMap.size();
         if (mapSize == 1){
-            return HandType.FIVE_OF_A_KIND;
+            return FIVE_OF_A_KIND;
         }
         if (mapSize == 2){
             if (countMap.containsValue(4L)){
-                return HandType.FOUR_OF_A_KIND;
+                return FOUR_OF_A_KIND;
             }
-            return HandType.FULL_HOUSE;
+            return FULL_HOUSE;
         }
         if(mapSize == 3){
             if (countMap.containsValue(3L)){
-                return HandType.THREE_OF_A_KIND;
+                return THREE_OF_A_KIND;
             }
-            return HandType.TWO_PAIR;
+            return TWO_PAIR;
         }
         if(mapSize == 4){
-            return HandType.ONE_PAIR;
+            return ONE_PAIR;
         }
 
         if (mapSize == 5){
-            return HandType.HIGH_CARD;
+            return HIGH_CARD;
         }
         throw new IllegalStateException("wtf");
     }
