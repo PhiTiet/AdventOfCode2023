@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
+
 public class Day05Solver extends AbstractDayXSolver {
-    private static final String DELIMITER = "\r\n\r\n";
+    private final List<String> lines = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
+
     @Override
     public Long partOneSolution() {
         var inputs = getInput();
@@ -34,17 +37,12 @@ public class Day05Solver extends AbstractDayXSolver {
         return ret;
     }
 
-    private List<String> getLines() {
-        return fileReader.getLines(getPuzzleInputPath(), DELIMITER);
-    }
-
     private MapperChain getChain() {
-        var lines = getLines();
         return new MapperChain(lines.subList(1, lines.size()));
     }
 
     private List<Long> getInput() {
-        return Arrays.stream(getLines().get(0).split(" ")).map(Long::parseLong).toList();
+        return Arrays.stream(lines.get(0).split(" ")).map(Long::parseLong).toList();
     }
 
 

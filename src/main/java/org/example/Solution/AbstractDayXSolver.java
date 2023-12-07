@@ -2,6 +2,8 @@ package org.example.Solution;
 
 import org.example.Solution.utils.FileReader;
 
+import java.util.List;
+
 public abstract class AbstractDayXSolver implements DayXSolver {
     protected final FileReader fileReader = new FileReader();
 
@@ -14,5 +16,10 @@ public abstract class AbstractDayXSolver implements DayXSolver {
     protected String getPuzzleInputPath(){
         return "/" + this.getClass().getSimpleName().substring(0, 5).toLowerCase() + ".txt";
     }
-
+    protected List<String> getDefaultPuzzleInputLines(){
+        return fileReader.getLines(getPuzzleInputPath());
+    }
+    protected List<String> getDefaultPuzzleInputWithDelimiter(String delimiter){
+        return fileReader.getLines(getPuzzleInputPath(), delimiter);
+    }
 }

@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import static org.example.Solution.utils.RegexUtils.*;
+
 public class FileReader {
 
-    public static final String NEW_LINE = "\r\n";
-
     public List<String> getLines(String path) {
-        return getLines(path, NEW_LINE);
+        return getLines(path, WINDOWS_NEWLINE);
     }
 
     public List<String> getLines(String path, String delimiter){

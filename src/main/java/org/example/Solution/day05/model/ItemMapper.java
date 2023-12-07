@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
+
 public class ItemMapper {
     private final List<ItemSubMap> subMappings;
 
     public ItemMapper(String inputLine){
-        var lines = inputLine.split("\r\n");
+        var lines = inputLine.split(WINDOWS_NEWLINE);
         subMappings = Arrays.stream(lines)
                 .map(ItemSubMap::new)
                 .toList();

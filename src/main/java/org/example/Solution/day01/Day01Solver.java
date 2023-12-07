@@ -9,6 +9,7 @@ import java.util.Map;
 import static org.apache.commons.collections.MapUtils.invertMap;
 
 public class Day01Solver extends AbstractDayXSolver {
+    private final List<String> rawLines = getDefaultPuzzleInputLines();
     private static final Map<String, Integer> STRING_TO_INT_MAP = Map.of(
             "one", 1,
             "two", 2,
@@ -24,8 +25,7 @@ public class Day01Solver extends AbstractDayXSolver {
 
     @Override
     public Long partOneSolution() {
-        var lines = fileReader.getLines(getPuzzleInputPath());
-        return lines.stream()
+        return rawLines.stream()
                 .map(this::removeChars)
                 .map(this::retainOuterNumericalCharacters)
                 .map(Long::parseLong)
@@ -35,8 +35,7 @@ public class Day01Solver extends AbstractDayXSolver {
 
     @Override
     public Long partTwoSolution() {
-        var lines = fileReader.getLines(getPuzzleInputPath());
-        return lines.stream()
+        return rawLines.stream()
                 .map(this::writeOutNumbers)
                 .map(this::convertToListOfNumbers)
                 .map(this::getDesiredNumber)

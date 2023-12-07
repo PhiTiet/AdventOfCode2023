@@ -3,10 +3,11 @@ package org.example.Solution.day04.model;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Math.*;
+import static java.lang.Math.pow;
+import static java.lang.Math.toIntExact;
+import static org.example.Solution.utils.RegexUtils.WHITE_SPACES;
 
 public class ScratchCard {
-    private static final String WHITESPACE = "\\s+";
     private static final String CARD_SPLIT = "\\|";
 
     private final List<Integer> numbers;
@@ -32,7 +33,7 @@ public class ScratchCard {
     }
 
     private List<Integer> toIntegerList(String line) {
-        return Arrays.stream(line.split(WHITESPACE)).map(Integer::parseInt).toList();
+        return Arrays.stream(line.split(WHITE_SPACES)).map(Integer::parseInt).toList();
     }
 
 }

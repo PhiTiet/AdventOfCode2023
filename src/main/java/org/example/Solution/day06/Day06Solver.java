@@ -10,11 +10,12 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.lang.Math.min;
+import static org.example.Solution.utils.RegexUtils.WHITE_SPACES;
 
 public class Day06Solver extends AbstractDayXSolver {
     private final WinningStrategiesFinder winningStrategiesFinder = new WinningStrategiesFinder();
     private static final String PATH_PART_TWO = "/day06p2.txt";
-    private static final String WHITESPACE_REGEX = "\\s+";
+
     @Override
     public Long partOneSolution() {
         return getSolutionWithPart(getPuzzleInputPath());
@@ -36,8 +37,8 @@ public class Day06Solver extends AbstractDayXSolver {
     }
 
     private List<RaceRecord> getRaceRecords(List<String> lines) {
-        var timesRaw = lines.get(1).split(WHITESPACE_REGEX);
-        var distanceRaw = lines.get(0).split(WHITESPACE_REGEX);
+        var timesRaw = lines.get(1).split(WHITE_SPACES);
+        var distanceRaw = lines.get(0).split(WHITE_SPACES);
         var times = toListOfLong(timesRaw);
         var distance = toListOfLong(distanceRaw);
 

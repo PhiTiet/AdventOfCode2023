@@ -13,7 +13,6 @@ public class Day04Solver extends AbstractDayXSolver {
     @Override
     public Integer partOneSolution() {
         List<ScratchCard> cards = getScratchCards();
-
         return cards.stream().map(ScratchCard::getScore).reduce(0, Integer::sum);
     }
 
@@ -26,7 +25,6 @@ public class Day04Solver extends AbstractDayXSolver {
     }
 
     private Integer calculateCopies(List<Integer> intersections) {
-
         List<Integer> copies = new ArrayList<>(Collections.nCopies(intersections.size(), 1));
         for (int i = 0; i < intersections.size(); i++){
             for (int j = 1; j <= intersections.get(i); j++){
@@ -37,7 +35,7 @@ public class Day04Solver extends AbstractDayXSolver {
     }
 
     private List<ScratchCard> getScratchCards() {
-        return fileReader.getLines(getPuzzleInputPath())
+        return getDefaultPuzzleInputLines()
                 .stream()
                 .map(a -> a.split(": ")[1])
                 .map(ScratchCard::new)

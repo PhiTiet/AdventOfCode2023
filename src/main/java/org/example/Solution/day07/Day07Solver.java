@@ -13,11 +13,11 @@ import static org.example.Solution.utils.AdventPart.PART_ONE;
 import static org.example.Solution.utils.AdventPart.PART_TWO;
 
 public class Day07Solver extends AbstractDayXSolver {
+    private final List<String> rawLines = getDefaultPuzzleInputLines();
 
     @Override
     public Long partOneSolution() {
-        List<String> lines = fileReader.getLines(getPuzzleInputPath());
-        List<Hand> hands = getHands(lines, PART_ONE);
+        List<Hand> hands = getHands(rawLines, PART_ONE);
         List<Hand> sorted = hands
                 .stream().sorted(reverseOrder())
                 .toList();
@@ -26,8 +26,7 @@ public class Day07Solver extends AbstractDayXSolver {
 
     @Override
     public Long partTwoSolution() {
-        List<String> lines = fileReader.getLines(getPuzzleInputPath());
-        List<Hand> hands = getHands(lines, PART_TWO);
+        List<Hand> hands = getHands(rawLines, PART_TWO);
         var sorted = hands.stream()
                 .sorted(reverseOrder(new PartTwoHandComparator()))
                 .toList();

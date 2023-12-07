@@ -27,7 +27,7 @@ public class Day02Solver extends AbstractDayXSolver {
     }
 
     private List<Game> getGames() {
-        return fileReader.getLines(getPuzzleInputPath()).stream().map(Day02Solver::getGame).toList();
+        return getDefaultPuzzleInputLines().stream().map(Day02Solver::getGame).toList();
     }
 
     private static Game getGame(String l) {
