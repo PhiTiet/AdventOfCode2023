@@ -1,4 +1,5 @@
 I'm not converting this to Java, it was much easier to do in python.
+Created in cooperation with Pieter Bijl.
 
 General strategy for both parts:
 Convert input to grid of characters
