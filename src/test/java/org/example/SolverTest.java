@@ -25,22 +25,22 @@ class SolverTest {
         @Test
         void dayTwo(){
             var day02 = new Day02Solver();
-            assertThat(day02.partOneSolution()).isEqualTo(2256);
-            assertThat(day02.partTwoSolution()).isEqualTo(74229);
+            assertThat(day02.partOneSolution()).isEqualTo(2256L);
+            assertThat(day02.partTwoSolution()).isEqualTo(74229L);
         }
 
         @Test
         void dayFour(){
             var day04 = new Day04Solver();
-            assertThat(day04.partOneSolution()).isEqualTo(22193);
-            assertThat(day04.partTwoSolution()).isEqualTo(5625994);
+            assertThat(day04.partOneSolution()).isEqualTo(22193L);
+            assertThat(day04.partTwoSolution()).isEqualTo(5625994L);
         }
 
         @Test
         void dayFive(){
             var day05 = new Day05Solver();
-            assertThat(day05.partOneSolution()).isEqualTo(403695602);
-            assertThat(day05.partTwoSolution()).isEqualTo(219529182);
+            assertThat(day05.partOneSolution()).isEqualTo(403695602L);
+            assertThat(day05.partTwoSolution()).isEqualTo(219529182L);
         }
 
         @Test

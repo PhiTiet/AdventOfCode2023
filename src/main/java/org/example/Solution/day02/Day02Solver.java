@@ -10,20 +10,20 @@ public class Day02Solver extends AbstractDayXXSolver {
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
 
     @Override
-    public Integer partOneSolution() {
+    public Long partOneSolution() {
         var games = getGames();
         return  games.stream()
                 .filter(game ->  game.possible(cubeUpperLimit))
                 .map(Game::getGameId)
-                .reduce(0, Integer::sum);
+                .reduce(0L, Long::sum);
     }
 
     @Override
-    public Integer partTwoSolution() {
+    public Long partTwoSolution() {
         return getGames().stream()
                 .map(Game::getCubeUpperLimit)
                 .map(CubeUpperLimit::getPower)
-                .reduce(0, Integer::sum);
+                .reduce(0L, Long::sum);
     }
 
     private List<Game> getGames() {

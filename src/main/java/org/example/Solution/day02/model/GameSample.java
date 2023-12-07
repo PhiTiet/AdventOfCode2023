@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class GameSample {
-    private int blue;
-    private int green;
-    private int red;
+    private long blue;
+    private long green;
+    private long red;
 
     public GameSample(String sampleLine) {
         var draws = sampleLine.split(", ");
@@ -14,7 +14,7 @@ public class GameSample {
         for (var draw : draws) {
             var temp = draw.split(" ");
 
-            int amount = Integer.parseInt(temp[0]);
+            long amount =Long.parseLong(temp[0]);
             String color = temp[1];
 
             if (color.equals("blue")) {

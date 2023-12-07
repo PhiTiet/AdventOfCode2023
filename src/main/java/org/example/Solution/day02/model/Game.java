@@ -8,18 +8,18 @@ import java.util.stream.Stream;
 @Getter
 public class Game {
     public static final String DELIMITER = "; ";
-    private final int gameId;
+    private final long gameId;
     private final List<GameSample> samples;
 
-    public Game(int gameId, String line) {
+    public Game(long gameId, String line) {
         this.gameId = gameId;
         samples = Stream.of(line.split(DELIMITER)).map(GameSample::new).toList();
     }
 
     public CubeUpperLimit getCubeUpperLimit() {
-        var maxBlue = 0;
-        var maxGreen = 0;
-        var maxRed = 0;
+        var maxBlue = 0L;
+        var maxGreen = 0L;
+        var maxRed = 0L;
 
         for (var sample : samples) {
             if (sample.getBlue() > maxBlue) {
