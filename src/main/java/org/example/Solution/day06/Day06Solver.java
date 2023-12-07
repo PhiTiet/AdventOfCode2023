@@ -18,15 +18,15 @@ public class Day06Solver extends AbstractDayXXSolver {
 
     @Override
     public Long partOneSolution() {
-        return getSolutionWithPart(getPuzzleInputPath());
+        return getSolutionWithPath(getPuzzleInputPath());
     }
 
     @Override
     public Long partTwoSolution() {
-        return getSolutionWithPart(PATH_PART_TWO);
+        return getSolutionWithPath(PATH_PART_TWO);
     }
 
-    private Long getSolutionWithPart(String pathPartOne) {
+    private Long getSolutionWithPath(String pathPartOne) {
         var lines = fileReader.getLines(pathPartOne);
         List<RaceRecord> records = getRaceRecords(lines);
         return records.stream()
