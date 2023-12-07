@@ -1,6 +1,6 @@
 package org.example.Solution.day01;
 
-import org.example.Solution.AbstractDayXSolver;
+import org.example.Solution.AbstractDayXXSolver;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.apache.commons.collections.MapUtils.invertMap;
 
-public class Day01Solver extends AbstractDayXSolver {
+public class Day01Solver extends AbstractDayXXSolver {
     private final List<String> rawLines = getDefaultPuzzleInputLines();
     private static final Map<String, Integer> STRING_TO_INT_MAP = Map.of(
             "one", 1,

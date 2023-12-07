@@ -1,6 +1,6 @@
 package org.example.Solution.day04;
 
-import org.example.Solution.AbstractDayXSolver;
+import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day04.model.ScratchCard;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class Day04Solver extends AbstractDayXSolver {
+public class Day04Solver extends AbstractDayXXSolver {
 
     @Override
     public Integer partOneSolution() {

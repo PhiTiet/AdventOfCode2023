@@ -1,7 +1,7 @@
 package org.example.Solution.day06;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import org.example.Solution.AbstractDayXSolver;
+import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day06.model.RaceRecord;
 import org.example.Solution.day06.model.WinningStrategiesFinder;
 
@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 import static java.lang.Math.min;
 import static org.example.Solution.utils.RegexUtils.WHITE_SPACES;
 
-public class Day06Solver extends AbstractDayXSolver {
+public class Day06Solver extends AbstractDayXXSolver {
     private final WinningStrategiesFinder winningStrategiesFinder = new WinningStrategiesFinder();
     private static final String PATH_PART_TWO = "/day06p2.txt";
 

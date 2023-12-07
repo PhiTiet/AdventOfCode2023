@@ -4,8 +4,15 @@ import org.example.Solution.utils.FileReader;
 
 import java.util.List;
 
-public abstract class AbstractDayXSolver implements DayXSolver {
+public abstract class AbstractDayXXSolver implements DayXXSolver {
     protected final FileReader fileReader = new FileReader();
+
+    @Override
+    public void printSolutions() {
+        System.out.println("********************* Current Solver: " + this.getClass().getSimpleName() + " *********************");
+        System.out.println("Solution part one: " + partOneSolution());
+        System.out.println("Solution part two: " + partTwoSolution());
+    }
 
     @Override
     public abstract <T> T partOneSolution();

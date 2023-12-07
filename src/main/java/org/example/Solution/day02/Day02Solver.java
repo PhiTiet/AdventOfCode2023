@@ -1,12 +1,12 @@
 package org.example.Solution.day02;
 
-import org.example.Solution.AbstractDayXSolver;
+import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day02.model.CubeUpperLimit;
 import org.example.Solution.day02.model.Game;
 
 import java.util.List;
 
-public class Day02Solver extends AbstractDayXSolver {
+public class Day02Solver extends AbstractDayXXSolver {
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
 
     @Override

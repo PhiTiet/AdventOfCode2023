@@ -1,7 +1,7 @@
 package org.example.Solution.day05;
 
 import org.apache.commons.lang3.Range;
-import org.example.Solution.AbstractDayXSolver;
+import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day05.model.MapperChain;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 
-public class Day05Solver extends AbstractDayXSolver {
+public class Day05Solver extends AbstractDayXXSolver {
     private final List<String> lines = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
 
     @Override

@@ -1,6 +1,6 @@
 package org.example.Solution.day07;
 
-import org.example.Solution.AbstractDayXSolver;
+import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day07.model.Hand;
 import org.example.Solution.day07.model.comparator.PartTwoHandComparator;
 import org.example.Solution.utils.AdventPart;
@@ -12,7 +12,7 @@ import static java.util.Collections.reverseOrder;
 import static org.example.Solution.utils.AdventPart.PART_ONE;
 import static org.example.Solution.utils.AdventPart.PART_TWO;
 
-public class Day07Solver extends AbstractDayXSolver {
+public class Day07Solver extends AbstractDayXXSolver {
     private final List<String> rawLines = getDefaultPuzzleInputLines();
 
     @Override
