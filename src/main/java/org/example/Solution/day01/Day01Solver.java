@@ -29,7 +29,7 @@ public class Day01Solver implements DayXSolver {
         var lines = fileReader.getLines(PATH);
         return lines.stream()
                 .map(this::removeChars)
-                .map(this::removeMiddleChars)
+                .map(this::retainOuterNumericalCharacters)
                 .map(Long::parseLong)
                 .reduce(Long::sum)
                 .orElseThrow(RuntimeException::new);
@@ -49,7 +49,6 @@ public class Day01Solver implements DayXSolver {
     private Long getDesiredNumber(List<Integer> integers) {
         return Long.parseLong(integers.get(0).toString() + integers.get(integers.size() -1).toString());
     }
-
 
     private List<Integer> convertToListOfNumbers(String numberString) {
         Map<Integer, Integer> numbersByIndex = new HashMap<>();
@@ -74,9 +73,11 @@ public class Day01Solver implements DayXSolver {
 
     }
 
-
-    private String removeMiddleChars(String numbers) {
-        if (numbers.length() < 2){
+    private String retainOuterNumericalCharacters(String numbers) {
+        if (numbers.isEmpty()){
+            return "0";
+        }
+        if (numbers.length() == 1){
             return numbers + numbers;
         }
         return numbers.substring(0, 1) + numbers.substring(numbers.length() - 1);

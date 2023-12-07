@@ -1,0 +1,8 @@
+I'm not converting this to Java, it was much easier to do in python.
+
+General strategy for both parts:
+Convert input to grid of characters
+Convert numbers in grid to tuples of type: number, identifier
+get all tuples adjacent to relevant parts and create a set out of them  {} set notation
+
+Note: slang ("snake" in dutch) is used as a name as I found extracting the adjacents into a huge n-sized array fitting of slang;
