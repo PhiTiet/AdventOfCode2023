@@ -21,10 +21,10 @@ public class Day01Solver extends AbstractDayXSolver {
             "nine", 9);
 
     private static final Map<Integer,String> INT_TO_STRING_MAP = invertMap(STRING_TO_INT_MAP);
-    private static final String PATH = "/day01.txt";
+
     @Override
     public Long partOneSolution() {
-        var lines = fileReader.getLines(PATH);
+        var lines = fileReader.getLines(getPuzzleInputPath());
         return lines.stream()
                 .map(this::removeChars)
                 .map(this::retainOuterNumericalCharacters)
@@ -35,7 +35,7 @@ public class Day01Solver extends AbstractDayXSolver {
 
     @Override
     public Long partTwoSolution() {
-        var lines = fileReader.getLines(PATH);
+        var lines = fileReader.getLines(getPuzzleInputPath());
         return lines.stream()
                 .map(this::writeOutNumbers)
                 .map(this::convertToListOfNumbers)

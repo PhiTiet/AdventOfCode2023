@@ -7,7 +7,6 @@ import org.example.Solution.day02.model.Game;
 import java.util.List;
 
 public class Day02Solver extends AbstractDayXSolver {
-    private static final String PATH = "/day02.txt";
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
 
     @Override
@@ -28,7 +27,7 @@ public class Day02Solver extends AbstractDayXSolver {
     }
 
     private List<Game> getGames() {
-        return fileReader.getLines(PATH).stream().map(Day02Solver::getGame).toList();
+        return fileReader.getLines(getPuzzleInputPath()).stream().map(Day02Solver::getGame).toList();
     }
 
     private static Game getGame(String l) {

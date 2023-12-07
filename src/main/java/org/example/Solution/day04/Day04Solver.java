@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public class Day04Solver extends AbstractDayXSolver {
-    private static final String PATH = "/day04.txt";
 
     @Override
     public Integer partOneSolution() {
@@ -38,7 +37,7 @@ public class Day04Solver extends AbstractDayXSolver {
     }
 
     private List<ScratchCard> getScratchCards() {
-        return fileReader.getLines(PATH)
+        return fileReader.getLines(getPuzzleInputPath())
                 .stream()
                 .map(a -> a.split(": ")[1])
                 .map(ScratchCard::new)

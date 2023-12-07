@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Day05Solver extends AbstractDayXSolver {
-    private static final String PATH = "/day05.txt";
     private static final String DELIMITER = "\r\n\r\n";
     @Override
     public Long partOneSolution() {
@@ -36,7 +35,7 @@ public class Day05Solver extends AbstractDayXSolver {
     }
 
     private List<String> getLines() {
-        return fileReader.getLines(PATH, DELIMITER);
+        return fileReader.getLines(getPuzzleInputPath(), DELIMITER);
     }
 
     private MapperChain getChain() {

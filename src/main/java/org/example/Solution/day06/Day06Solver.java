@@ -13,13 +13,11 @@ import static java.lang.Math.min;
 
 public class Day06Solver extends AbstractDayXSolver {
     private final WinningStrategiesFinder winningStrategiesFinder = new WinningStrategiesFinder();
-    private static final String PATH_PART_ONE = "/day06.txt";
     private static final String PATH_PART_TWO = "/day06p2.txt";
-
     private static final String WHITESPACE_REGEX = "\\s+";
     @Override
     public Long partOneSolution() {
-        return getSolutionWithPart(PATH_PART_ONE);
+        return getSolutionWithPart(getPuzzleInputPath());
     }
 
     @Override
