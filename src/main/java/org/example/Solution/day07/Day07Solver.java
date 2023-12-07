@@ -1,6 +1,6 @@
 package org.example.Solution.day07;
 
-import org.example.Solution.DayXSolver;
+import org.example.Solution.AbstractDayXSolver;
 import org.example.Solution.day07.model.Hand;
 import org.example.Solution.day07.model.comparator.PartTwoHandComparator;
 import org.example.Solution.utils.AdventPart;
@@ -13,7 +13,7 @@ import static java.util.Collections.reverseOrder;
 import static org.example.Solution.utils.AdventPart.PART_ONE;
 import static org.example.Solution.utils.AdventPart.PART_TWO;
 
-public class Day07Solver implements DayXSolver {
+public class Day07Solver extends AbstractDayXSolver {
     private final FileReader fileReader = new FileReader();
     private static final String PATH = "/day07.txt";
 

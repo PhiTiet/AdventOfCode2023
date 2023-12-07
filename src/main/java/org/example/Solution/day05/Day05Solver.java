@@ -1,17 +1,14 @@
 package org.example.Solution.day05;
 
 import org.apache.commons.lang3.Range;
-import org.example.Solution.DayXSolver;
+import org.example.Solution.AbstractDayXSolver;
 import org.example.Solution.day05.model.MapperChain;
-import org.example.Solution.utils.FileReader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Day05Solver implements DayXSolver {
-
-    private final FileReader fileReader = new FileReader();
+public class Day05Solver extends AbstractDayXSolver {
     private static final String PATH = "/day05.txt";
     private static final String DELIMITER = "\r\n\r\n";
     @Override

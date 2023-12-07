@@ -1,7 +1,6 @@
 package org.example.Solution.day01;
 
-import org.example.Solution.DayXSolver;
-import org.example.Solution.utils.FileReader;
+import org.example.Solution.AbstractDayXSolver;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.Map;
 
 import static org.apache.commons.collections.MapUtils.invertMap;
 
-public class Day01Solver implements DayXSolver {
+public class Day01Solver extends AbstractDayXSolver {
     private static final Map<String, Integer> STRING_TO_INT_MAP = Map.of(
             "one", 1,
             "two", 2,
@@ -22,7 +21,6 @@ public class Day01Solver implements DayXSolver {
             "nine", 9);
 
     private static final Map<Integer,String> INT_TO_STRING_MAP = invertMap(STRING_TO_INT_MAP);
-    private final FileReader fileReader = new FileReader();
     private static final String PATH = "/day01.txt";
     @Override
     public Long partOneSolution() {

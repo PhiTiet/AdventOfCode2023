@@ -1,14 +1,12 @@
 package org.example.Solution.day02;
 
-import org.example.Solution.DayXSolver;
+import org.example.Solution.AbstractDayXSolver;
 import org.example.Solution.day02.model.CubeUpperLimit;
 import org.example.Solution.day02.model.Game;
-import org.example.Solution.utils.FileReader;
 
 import java.util.List;
 
-public class Day02Solver implements DayXSolver {
-    private final FileReader fileReader = new FileReader();
+public class Day02Solver extends AbstractDayXSolver {
     private static final String PATH = "/day02.txt";
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
 

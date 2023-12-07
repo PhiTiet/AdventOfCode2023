@@ -1,16 +1,14 @@
 package org.example.Solution.day04;
 
-import org.example.Solution.DayXSolver;
+import org.example.Solution.AbstractDayXSolver;
 import org.example.Solution.day04.model.ScratchCard;
-import org.example.Solution.utils.FileReader;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-public class Day04Solver implements DayXSolver {
-    private final FileReader fileReader = new FileReader();
+public class Day04Solver extends AbstractDayXSolver {
     private static final String PATH = "/day04.txt";
 
     @Override

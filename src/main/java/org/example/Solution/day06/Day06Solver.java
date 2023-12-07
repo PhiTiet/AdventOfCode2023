@@ -1,19 +1,17 @@
 package org.example.Solution.day06;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import org.example.Solution.DayXSolver;
+import org.example.Solution.AbstractDayXSolver;
 import org.example.Solution.day06.model.RaceRecord;
 import org.example.Solution.day06.model.WinningStrategiesFinder;
-import org.example.Solution.utils.FileReader;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.lang.Math.*;
+import static java.lang.Math.min;
 
-public class Day06Solver implements DayXSolver {
-    private final FileReader fileReader = new FileReader();
+public class Day06Solver extends AbstractDayXSolver {
     private final WinningStrategiesFinder winningStrategiesFinder = new WinningStrategiesFinder();
     private static final String PATH_PART_ONE = "/day06.txt";
     private static final String PATH_PART_TWO = "/day06p2.txt";
