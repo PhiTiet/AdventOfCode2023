@@ -11,7 +11,8 @@ import static java.util.Collections.max;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static org.example.Solution.day07.model.HandType.*;
-import static org.example.Solution.utils.AdventPart.*;
+import static org.example.Solution.utils.AdventPart.PART_ONE;
+import static org.example.Solution.utils.StringUtils.toCharacterList;
 
 @Getter
 @AllArgsConstructor
@@ -24,8 +25,7 @@ public class Hand implements Comparable<Hand>{
 
     public static Hand handPart(String cardString, String betString, AdventPart part) {
         var bet = Long.parseLong(betString);
-        var cards = cardString.chars()
-                .mapToObj(c -> String.valueOf((char) c))
+        var cards = toCharacterList(cardString).stream()
                 .map(Card::fromString)
                 .toList();
 
