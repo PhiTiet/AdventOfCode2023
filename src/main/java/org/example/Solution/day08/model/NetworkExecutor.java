@@ -22,30 +22,33 @@ public class NetworkExecutor {
     private final List<TraverseCommand> traverseCommands;
     private final Map<String, NetworkNode> lookupMap;
 
-    public Long execute(){
+    public Long execute() {
         return execute(this::isNotEndingNode, findNodeWithName(START_NODE_NAME));
     }
+
     //Since every defined starting node is cyclic in such a way that it contains exactly one end-node its possible to
     //find the desired state where all 6 end on an end note by finding the least_common_multiple over the result of all 6;
     public Long executeGhost() {
         List<NetworkNode> currentNodes = findNodesEndingWithStartingCharacter();
-        return  currentNodes.stream()
+        return currentNodes.stream()
                 .map(n -> execute(this::doesNotEndWithEndCharacter, n))
                 .reduce(1L, LongUtils::least_common_multiple);
     }
 
-    private Long execute(Function<NetworkNode, Boolean> stopFunction, NetworkNode startNode){
+    private Long execute(Function<NetworkNode, Boolean> stopFunction, NetworkNode startNode) {
         long iterations = 0;
         var currentNode = startNode;
-        while (stopFunction.apply(currentNode)){
+        while (stopFunction.apply(currentNode)) {
             var command = getTraverseCommand(iterations);
-            currentNode = command.equals(LEFT) ? findNodeWithName(currentNode.left) : findNodeWithName(currentNode.right);
+            currentNode = getChildForCommand(currentNode, command);
             iterations++;
         }
         return iterations;
-    };
+    }
 
-
+    private NetworkNode getChildForCommand(NetworkNode parent, TraverseCommand command) {
+        return command.equals(LEFT) ? findNodeWithName(parent.left) : findNodeWithName(parent.right);
+    }
 
     private boolean doesNotEndWithEndCharacter(NetworkNode node) {
         return !node.name.endsWith(END_NODE_CHAR);
@@ -58,16 +61,17 @@ public class NetworkExecutor {
     private List<NetworkNode> findNodesEndingWithStartingCharacter() {
         return nodes.stream().filter(n -> hasFinalCharacter(n.name)).toList();
     }
-    private boolean hasFinalCharacter(String str){
+
+    private boolean hasFinalCharacter(String str) {
         return str.endsWith(NetworkExecutor.START_NODE_CHAR);
     }
 
-    private TraverseCommand getTraverseCommand(long index){
-        return traverseCommands.get((int)index % traverseCommands.size());
+    private TraverseCommand getTraverseCommand(long index) {
+        return traverseCommands.get((int) index % traverseCommands.size());
     }
 
-    private NetworkNode findNodeWithName(String name){
-        if (!lookupMap.containsKey(name)){
+    private NetworkNode findNodeWithName(String name) {
+        if (!lookupMap.containsKey(name)) {
             throw new IllegalArgumentException(name + " does not exist in lookup map");
         }
         return lookupMap.get(name);
