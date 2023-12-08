@@ -17,7 +17,8 @@ public class Day08Solver extends AbstractDayXXSolver {
 
     @Override
     public Long partTwoSolution() {
-        return null;
+        var networkExecutor = getNetworkExecutor();
+        return networkExecutor.executeGhost();
     }
 
     private NetworkExecutor getNetworkExecutor(){
