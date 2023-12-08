@@ -39,7 +39,7 @@ public class Day07Solver extends AbstractDayXXSolver {
 
     private Hand fromLine(String line, AdventPart part) {
         var split = line.split(" ");
-        return Hand.handPart(split[0], split[1], part);
+        return Hand.getHandForPart(split[0], split[1], part);
     }
 
     private static long getWinnings(List<Hand> sorted) {

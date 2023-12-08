@@ -23,7 +23,7 @@ public class Hand implements Comparable<Hand> {
     private final HandType handType;
     private final Long bet;
 
-    public static Hand handPart(String cardString, String betString, AdventPart part) {
+    public static Hand getHandForPart(String cardString, String betString, AdventPart part) {
         var bet = Long.parseLong(betString);
         var cards = toCharacterList(cardString).stream()
                 .map(Card::fromString)

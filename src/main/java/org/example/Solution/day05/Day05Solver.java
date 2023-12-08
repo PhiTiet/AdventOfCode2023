@@ -17,7 +17,10 @@ public class Day05Solver extends AbstractDayXXSolver {
     public Long partOneSolution() {
         var inputs = getInput();
         var chain = getChain();
-        return inputs.stream().map(chain::map).min(Long::compare).orElseThrow(IllegalStateException::new);
+        return inputs.stream()
+                .map(chain::map)
+                .min(Long::compare)
+                .orElseThrow(IllegalStateException::new);
     }
 
     @Override
