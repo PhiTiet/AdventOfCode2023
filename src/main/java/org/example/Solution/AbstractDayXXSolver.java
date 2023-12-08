@@ -20,13 +20,15 @@ public abstract class AbstractDayXXSolver implements DayXXSolver {
     @Override
     public abstract <T> T partTwoSolution();
 
-    protected String getPuzzleInputPath(){
+    protected String getPuzzleInputPath() {
         return "/" + this.getClass().getSimpleName().substring(0, 5).toLowerCase() + ".txt";
     }
-    protected List<String> getDefaultPuzzleInputLines(){
+
+    protected List<String> getDefaultPuzzleInputLines() {
         return fileReader.getLines(getPuzzleInputPath());
     }
-    protected List<String> getDefaultPuzzleInputWithDelimiter(String delimiter){
+
+    protected List<String> getDefaultPuzzleInputWithDelimiter(String delimiter) {
         return fileReader.getLines(getPuzzleInputPath(), delimiter);
     }
 }

@@ -17,7 +17,7 @@ public class Day04Solver extends AbstractDayXXSolver {
     }
 
     @Override
-    public Long partTwoSolution(){
+    public Long partTwoSolution() {
         List<Long> intersections = getScratchCards().stream()
                 .map(ScratchCard::getIntersection)
                 .toList();
@@ -26,8 +26,8 @@ public class Day04Solver extends AbstractDayXXSolver {
 
     private Long calculateCopies(List<Long> intersections) {
         List<Long> copies = new ArrayList<>(Collections.nCopies(intersections.size(), 1L));
-        for (int i = 0; i < intersections.size(); i++){
-            for (int j = 1; j <= intersections.get(i); j++){
+        for (int i = 0; i < intersections.size(); i++) {
+            for (int j = 1; j <= intersections.get(i); j++) {
                 copies.set(i + j, copies.get(i) + copies.get(i + j));
             }
         }

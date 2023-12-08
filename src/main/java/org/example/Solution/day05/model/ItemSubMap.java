@@ -13,7 +13,7 @@ public class ItemSubMap {
     private final Range<Long> source;
     private final Range<Long> destination;
 
-    public ItemSubMap(String line){
+    public ItemSubMap(String line) {
         var elements = Arrays.stream(line.split(" ")).map(Long::parseLong).toList();
         Long length = elements.get(2);
         destination = Range.of(elements.get(0), elements.get(0) + length - 1);
@@ -31,7 +31,8 @@ public class ItemSubMap {
     public boolean canMap(Range<Long> range) {
         return source.isOverlappedBy(range);
     }
-    public Range<Long> map (Range<Long> range){
+
+    public Range<Long> map(Range<Long> range) {
         var intersect = source.intersectionWith(range);
         return Range.of(intersect.getMinimum() + getDifference(), intersect.getMaximum() + getDifference());
     }
@@ -41,31 +42,32 @@ public class ItemSubMap {
     }
 
     public ArrayList<Range<Long>> unmappedValues(Range<Long> range) {
-        if (!source.isOverlappedBy(range)){
+        if (!source.isOverlappedBy(range)) {
             return ArrayListOf(range);
         }
         var intersect = source.intersectionWith(range);
 
-        if (isInclusiveMiddleSubset(range, source)){
+        if (isInclusiveMiddleSubset(range, source)) {
             return new ArrayList<>();
         }
-        if (isMiddleSubset(intersect, range)){
+        if (isMiddleSubset(intersect, range)) {
             return ArrayListOf(Range.of(range.getMinimum(), intersect.getMinimum() - 1), Range.of(intersect.getMaximum() + 1, range.getMaximum()));
         }
-        if (range.getMinimum().equals(intersect.getMinimum())){
+        if (range.getMinimum().equals(intersect.getMinimum())) {
             return ArrayListOf(Range.of(intersect.getMaximum() + 1, range.getMaximum()));
         }
-        if (range.getMaximum().equals(intersect.getMaximum())){
+        if (range.getMaximum().equals(intersect.getMaximum())) {
             return ArrayListOf(Range.of(range.getMinimum(), intersect.getMinimum() - 1));
         }
         throw new IllegalStateException("bruh");
 
     }
 
-    private boolean isMiddleSubset(Range<Long> subset, Range<Long> superset){
-        return superset.getMinimum() < subset.getMinimum() &&  superset.getMaximum() > subset.getMaximum();
+    private boolean isMiddleSubset(Range<Long> subset, Range<Long> superset) {
+        return superset.getMinimum() < subset.getMinimum() && superset.getMaximum() > subset.getMaximum();
     }
-    private boolean isInclusiveMiddleSubset(Range<Long> subset, Range<Long> superset){
-        return superset.getMinimum() <= subset.getMinimum() &&  superset.getMaximum() >= subset.getMaximum();
+
+    private boolean isInclusiveMiddleSubset(Range<Long> subset, Range<Long> superset) {
+        return superset.getMinimum() <= subset.getMinimum() && superset.getMaximum() >= subset.getMaximum();
     }
 }

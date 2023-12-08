@@ -16,7 +16,7 @@ import static org.example.Solution.utils.StringUtils.toCharacterList;
 
 @Getter
 @AllArgsConstructor
-public class Hand implements Comparable<Hand>{
+public class Hand implements Comparable<Hand> {
     private static final Card JOKER_CARD = Card.J;
 
     private final List<Card> cards;
@@ -38,7 +38,7 @@ public class Hand implements Comparable<Hand>{
     private static Map<Card, Long> jokerSubstituteCountMap(List<Card> cards) {
         var countMap = getCountMap(cards);
 
-        if (!countMap.containsKey(JOKER_CARD) || countMap.get(JOKER_CARD) == cards.size()){
+        if (!countMap.containsKey(JOKER_CARD) || countMap.get(JOKER_CARD) == cards.size()) {
             return countMap;
         }
         var numJokers = countMap.remove(JOKER_CARD);
@@ -50,26 +50,26 @@ public class Hand implements Comparable<Hand>{
 
     private static HandType determineHandType(Map<Card, Long> countMap) {
         int mapSize = countMap.size();
-        if (mapSize == 1){
+        if (mapSize == 1) {
             return FIVE_OF_A_KIND;
         }
-        if (mapSize == 2){
-            if (countMap.containsValue(4L)){
+        if (mapSize == 2) {
+            if (countMap.containsValue(4L)) {
                 return FOUR_OF_A_KIND;
             }
             return FULL_HOUSE;
         }
-        if(mapSize == 3){
-            if (countMap.containsValue(3L)){
+        if (mapSize == 3) {
+            if (countMap.containsValue(3L)) {
                 return THREE_OF_A_KIND;
             }
             return TWO_PAIR;
         }
-        if(mapSize == 4){
+        if (mapSize == 4) {
             return ONE_PAIR;
         }
 
-        if (mapSize == 5){
+        if (mapSize == 5) {
             return HIGH_CARD;
         }
         throw new IllegalStateException("wtf");
@@ -82,10 +82,10 @@ public class Hand implements Comparable<Hand>{
     @Override
     public int compareTo(Hand other) {
         var handTypeResult = this.handType.compareTo(other.handType);
-        if (handTypeResult == 0){
-            for (int i = 0; i < cards.size(); i++){
+        if (handTypeResult == 0) {
+            for (int i = 0; i < cards.size(); i++) {
                 var cardTypeResult = cards.get(i).compareTo(other.cards.get(i));
-                if (cardTypeResult != 0){
+                if (cardTypeResult != 0) {
                     return cardTypeResult;
                 }
             }

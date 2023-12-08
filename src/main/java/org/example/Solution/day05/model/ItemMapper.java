@@ -11,7 +11,7 @@ import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 public class ItemMapper {
     private final List<ItemSubMap> subMappings;
 
-    public ItemMapper(String inputLine){
+    public ItemMapper(String inputLine) {
         var lines = inputLine.split(WINDOWS_NEWLINE);
         subMappings = Arrays.stream(lines)
                 .map(ItemSubMap::new)
@@ -19,8 +19,8 @@ public class ItemMapper {
     }
 
     public Long map(Long input) {
-        for (var mapping : subMappings){
-            if (mapping.canMap(input)){
+        for (var mapping : subMappings) {
+            if (mapping.canMap(input)) {
                 return mapping.map(input);
             }
         }
@@ -30,7 +30,7 @@ public class ItemMapper {
     private ArrayList<Range<Long>> map(Range<Long> range, int mapIndex) {
         ArrayList<Range<Long>> ans = new ArrayList<>();
         var currentMap = subMappings.get(mapIndex);
-        if (currentMap.canMap(range)){
+        if (currentMap.canMap(range)) {
             ans.add(currentMap.map(range));
         }
         var remainder = currentMap.unmappedValues(range);
@@ -38,14 +38,14 @@ public class ItemMapper {
         return ans;
     }
 
-    public ArrayList<Range<Long>> multiMap(ArrayList<Range<Long>> input, int mapIndex){
-        if (mapIndex >= subMappings.size()){
+    public ArrayList<Range<Long>> multiMap(ArrayList<Range<Long>> input, int mapIndex) {
+        if (mapIndex >= subMappings.size()) {
             return input;
         }
         return input.stream().map(a -> map(a, mapIndex)).reduce(new ArrayList<>(), this::addList);
     }
 
-    private ArrayList<Range<Long>> addList(ArrayList<Range<Long>> a, ArrayList<Range<Long>> b){
+    private ArrayList<Range<Long>> addList(ArrayList<Range<Long>> a, ArrayList<Range<Long>> b) {
         ArrayList<Range<Long>> result = new ArrayList<>(a);
         result.addAll(b);
         return result;

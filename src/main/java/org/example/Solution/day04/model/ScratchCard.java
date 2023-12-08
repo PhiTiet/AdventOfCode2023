@@ -12,17 +12,17 @@ public class ScratchCard {
     private final List<Long> numbers;
     private final List<Long> winningNumbers;
 
-    public ScratchCard(String line){
+    public ScratchCard(String line) {
         var split = bisectLineAndTrim(line);
         numbers = toListOfLongs(split.get(0));
         winningNumbers = toListOfLongs(split.get(1));
     }
 
-    public long getIntersection(){
+    public long getIntersection() {
         return numbers.stream().filter(winningNumbers::contains).count();
     }
 
-    public long getScore(){
+    public long getScore() {
         var intersections = getIntersection();
         return intersections == 0 ? 0 : (long) pow(2, intersections - 1);
     }

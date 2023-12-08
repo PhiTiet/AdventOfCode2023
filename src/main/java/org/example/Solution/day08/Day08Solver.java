@@ -9,6 +9,7 @@ import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 
 public class Day08Solver extends AbstractDayXXSolver {
     private final List<String> rawCommandsAndNodes = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
+
     @Override
     public Long partOneSolution() {
         var networkExecutor = getNetworkExecutor();
@@ -21,7 +22,7 @@ public class Day08Solver extends AbstractDayXXSolver {
         return networkExecutor.executeGhost();
     }
 
-    private NetworkExecutor getNetworkExecutor(){
+    private NetworkExecutor getNetworkExecutor() {
         return new NetworkExecutor(rawCommandsAndNodes);
     }
 }

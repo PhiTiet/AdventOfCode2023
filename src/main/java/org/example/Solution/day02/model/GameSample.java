@@ -14,7 +14,7 @@ public class GameSample {
         for (var draw : draws) {
             var temp = draw.split(" ");
 
-            long amount =Long.parseLong(temp[0]);
+            long amount = Long.parseLong(temp[0]);
             String color = temp[1];
 
             if (color.equals("blue")) {

@@ -87,5 +87,4 @@ public class NetworkExecutor {
                 .toList();
         lookupMap = nodes.stream().collect(Collectors.toMap(a -> a.name, b -> b));
     }
-
 }

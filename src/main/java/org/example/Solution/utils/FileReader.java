@@ -13,7 +13,7 @@ public class FileReader {
         return getLines(path, WINDOWS_NEWLINE);
     }
 
-    public List<String> getLines(String path, String delimiter){
+    public List<String> getLines(String path, String delimiter) {
         InputStream is = FileReader.class.getResourceAsStream(path);
 
         String str;

@@ -12,8 +12,8 @@ public class Day02Solver extends AbstractDayXXSolver {
     @Override
     public Long partOneSolution() {
         var games = getGames();
-        return  games.stream()
-                .filter(game ->  game.possible(cubeUpperLimit))
+        return games.stream()
+                .filter(game -> game.possible(cubeUpperLimit))
                 .map(Game::getGameId)
                 .reduce(0L, Long::sum);
     }

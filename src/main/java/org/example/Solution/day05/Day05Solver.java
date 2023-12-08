@@ -31,7 +31,7 @@ public class Day05Solver extends AbstractDayXXSolver {
     private ArrayList<Range<Long>> getRangeInput() {
         var longs = getInput();
         var ret = new ArrayList<Range<Long>>();
-        for (int i = 0; i < longs.size(); i += 2){
+        for (int i = 0; i < longs.size(); i += 2) {
             ret.add(Range.of(longs.get(i), longs.get(i) + longs.get(i + 1)));
         }
         return ret;

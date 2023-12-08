@@ -1,6 +1,6 @@
 package org.example.Solution.day07.model;
 
-public enum HandType implements Comparable<HandType>{
+public enum HandType implements Comparable<HandType> {
     FIVE_OF_A_KIND,
     FOUR_OF_A_KIND,
     FULL_HOUSE,

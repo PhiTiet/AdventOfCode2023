@@ -4,7 +4,7 @@ public enum TraverseCommand {
     LEFT,
     RIGHT;
 
-    public static TraverseCommand fromString(String fromString){
+    public static TraverseCommand fromString(String fromString) {
         return fromString.equals("L") ? LEFT : RIGHT;
     }
 }
