@@ -27,7 +27,8 @@ public class NetworkExecutor {
     }
 
     //Since every defined starting node is cyclic in such a way that it contains exactly one end-node its possible to
-    //find the desired state where all 6 end on an end note by finding the least_common_multiple over the result of all 6;
+    //find the desired state where all 6 end on an end note by finding the least_common_multiple over the result of
+    // the distance to the end node of all 6;
     public Long executeGhost() {
         List<NetworkNode> currentNodes = findNodesEndingWithStartingCharacter();
         return currentNodes.stream()
