@@ -7,6 +7,7 @@ import org.example.Solution.day05.Day05Solver;
 import org.example.Solution.day06.Day06Solver;
 import org.example.Solution.day07.Day07Solver;
 import org.example.Solution.day08.Day08Solver;
+import org.example.Solution.day09.Day09Solver;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -63,6 +64,13 @@ class SolverTest {
             var day08 = new Day08Solver();
             assertThat(day08.partOneSolution()).isEqualTo(19951L);
             assertThat(day08.partTwoSolution()).isEqualTo(16342438708751L);
+        }
+
+        @Test
+        void dayNine() {
+            var day09 = new Day09Solver();
+            assertThat(day09.partOneSolution()).isEqualTo(1637452029L);
+            assertThat(day09.partTwoSolution()).isEqualTo(908L);
         }
 
     }
