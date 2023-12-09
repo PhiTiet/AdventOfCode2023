@@ -33,7 +33,6 @@ public class Day09Solver extends AbstractDayXXSolver {
         }
         var differences = getDifferences(sequence);
         return sequence.getLast() + getLastDifference(differences);
-
     }
 
     private List<Long> getDifferences(List<Long> sequence) {
