@@ -64,6 +64,7 @@ class SolverTest {
             assertThat(day08.partOneSolution()).isEqualTo(19951L);
             assertThat(day08.partTwoSolution()).isEqualTo(16342438708751L);
         }
+
     }
 
 }
