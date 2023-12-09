@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day01.Day01Solver;
 import org.example.Solution.day02.Day02Solver;
 import org.example.Solution.day04.Day04Solver;
@@ -19,58 +20,47 @@ class SolverTest {
 
         @Test
         void dayOne() {
-            var day01 = new Day01Solver();
-            assertThat(day01.partOneSolution()).isEqualTo(54331L);
-            assertThat(day01.partTwoSolution()).isEqualTo(54518L);
+            correctLongSolutions(new Day01Solver(), 54331L, 54518L);
         }
 
         @Test
         void dayTwo() {
-            var day02 = new Day02Solver();
-            assertThat(day02.partOneSolution()).isEqualTo(2256L);
-            assertThat(day02.partTwoSolution()).isEqualTo(74229L);
+            correctLongSolutions(new Day02Solver(), 2256L, 74229L);
         }
 
         @Test
         void dayFour() {
-            var day04 = new Day04Solver();
-            assertThat(day04.partOneSolution()).isEqualTo(22193L);
-            assertThat(day04.partTwoSolution()).isEqualTo(5625994L);
+            correctLongSolutions(new Day04Solver(), 22193L, 5625994L);
         }
 
         @Test
         void dayFive() {
-            var day05 = new Day05Solver();
-            assertThat(day05.partOneSolution()).isEqualTo(403695602L);
-            assertThat(day05.partTwoSolution()).isEqualTo(219529182L);
+            correctLongSolutions(new Day05Solver(), 403695602L, 219529182L);
         }
 
         @Test
         void daySix() {
-            var day06 = new Day06Solver();
-            assertThat(day06.partOneSolution()).isEqualTo(114400L);
-            assertThat(day06.partTwoSolution()).isEqualTo(21039729L);
+            correctLongSolutions(new Day06Solver(), 114400L, 21039729L);
         }
 
         @Test
         void daySeven() {
-            var day07 = new Day07Solver();
-            assertThat(day07.partOneSolution()).isEqualTo(250951660L);
-            assertThat(day07.partTwoSolution()).isEqualTo(251481660L);
+            correctLongSolutions(new Day07Solver(), 250951660L, 251481660L);
         }
 
         @Test
         void dayEight() {
-            var day08 = new Day08Solver();
-            assertThat(day08.partOneSolution()).isEqualTo(19951L);
-            assertThat(day08.partTwoSolution()).isEqualTo(16342438708751L);
+            correctLongSolutions(new Day08Solver(), 19951L, 16342438708751L);
         }
 
         @Test
         void dayNine() {
-            var day09 = new Day09Solver();
-            assertThat(day09.partOneSolution()).isEqualTo(1637452029L);
-            assertThat(day09.partTwoSolution()).isEqualTo(908L);
+            correctLongSolutions(new Day09Solver(), 1637452029L, 908L);
+        }
+
+        void correctLongSolutions(AbstractDayXXSolver solver, Long answerPartOne, Long answerPartTwo) {
+            assertThat((Long) solver.partOneSolution()).isEqualTo(answerPartOne);
+            assertThat((Long) solver.partTwoSolution()).isEqualTo(answerPartTwo);
         }
 
     }
