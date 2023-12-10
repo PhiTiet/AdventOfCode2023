@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.Solution.day10.model.GroundType.exitDirection;
-import static org.example.Solution.day10.model.GroundType.fromString;
 
 public class Day10Solver extends AbstractDayXXSolver {
     private static final long START_X = 88;
@@ -20,9 +19,9 @@ public class Day10Solver extends AbstractDayXXSolver {
 
     @Override
     public Long partOneSolution() {
-        var grid = new Grid(rawLines, GroundTile.class);
+        Grid<GroundTile> grid = new Grid<>(rawLines, GroundTile.class);
         var start = grid.getElementAt(START_X, START_Y);
-
+        
         var current = start;
         boolean looped = false;
         var direction = START_DIRECTION;
@@ -33,7 +32,7 @@ public class Day10Solver extends AbstractDayXXSolver {
             current = traverseAndGet(grid, current, direction);
             visited.add(current);
             direction = Direction.getReverse(direction);
-            direction = exitDirection(direction, fromString(current.getSymbol()));
+            direction = exitDirection(direction, current.getGroundType());
             iterations++;
             if (current.equals(start)) {
                 looped = true;
@@ -43,7 +42,7 @@ public class Day10Solver extends AbstractDayXXSolver {
         return iterations / 2;
     }
 
-    private GridElement traverseAndGet(Grid grid, GridElement current, Direction direction) {
+    private GroundTile traverseAndGet(Grid<GroundTile> grid, GridElement current, Direction direction) {
         switch (direction) {
             case NORTH -> {
                 return grid.getElementAt(current.getX(), current.getY() - 1);
