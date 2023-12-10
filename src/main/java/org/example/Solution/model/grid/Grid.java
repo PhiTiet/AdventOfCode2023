@@ -41,21 +41,6 @@ public class Grid<E extends GridElement> {
         }
     }
 
-    public void printSelectedElements(List<GridElement> selectedElements) {
-        for (int y = 0; y < gridSize; y++) {
-            for (int x = 0; x < gridSize; x++) {
-                int index = getIndex(y, x);
-                GridElement element = elements.get(index);
-                if (selectedElements.contains(element)) {
-                    System.out.print(element.getSymbol() + " ");
-                } else {
-                    System.out.print(". ");
-                }
-            }
-            System.out.println();
-        }
-    }
-
     private int getIndex(int y, int x) {
         return y * gridSize + x;
     }
