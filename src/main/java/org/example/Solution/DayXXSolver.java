@@ -1,9 +1,9 @@
 package org.example.Solution;
 
-public interface DayXXSolver {
-    <T> T partOneSolution();
+public interface DayXXSolver<T> {
+    T partOneSolution();
 
-    <T> T partTwoSolution();
+    T partTwoSolution();
 
     void printSolutions();
 }

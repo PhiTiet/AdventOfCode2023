@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.apache.commons.collections.MapUtils.invertMap;
 
-public class Day01Solver extends AbstractDayXXSolver {
+public class Day01Solver extends AbstractDayXXSolver<Long> {
     private final List<String> rawLines = getDefaultPuzzleInputLines();
     private static final Map<String, Integer> STRING_TO_INT_MAP = Map.of(
             "one", 1,

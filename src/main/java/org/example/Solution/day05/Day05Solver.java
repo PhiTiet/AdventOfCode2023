@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 
-public class Day05Solver extends AbstractDayXXSolver {
+public class Day05Solver extends AbstractDayXXSolver<Long> {
     private final List<String> lines = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
 
     @Override

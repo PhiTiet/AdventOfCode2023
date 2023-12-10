@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 import static java.lang.Math.min;
 import static org.example.Solution.utils.RegexUtils.WHITE_SPACES;
 
-public class Day06Solver extends AbstractDayXXSolver {
+public class Day06Solver extends AbstractDayXXSolver<Long> {
     private final WinningStrategiesFinder winningStrategiesFinder = new WinningStrategiesFinder();
     private static final String PATH_PART_TWO = "/day06p2.txt";
 

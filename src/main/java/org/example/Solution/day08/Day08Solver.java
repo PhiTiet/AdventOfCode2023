@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 
-public class Day08Solver extends AbstractDayXXSolver {
+public class Day08Solver extends AbstractDayXXSolver<Long> {
     private final List<String> rawCommandsAndNodes = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
     private final NetworkExecutor networkExecutor = new NetworkExecutor(rawCommandsAndNodes);
 
@@ -20,5 +20,5 @@ public class Day08Solver extends AbstractDayXXSolver {
     public Long partTwoSolution() {
         return networkExecutor.executeGhost();
     }
-    
+
 }

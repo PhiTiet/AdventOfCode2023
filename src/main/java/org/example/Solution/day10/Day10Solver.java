@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.example.Solution.day10.model.GroundType.exitDirection;
 
-public class Day10Solver extends AbstractDayXXSolver {
+public class Day10Solver extends AbstractDayXXSolver<Long> {
     private static final long START_X = 88;
     private static final long START_Y = 69;
     private static final Direction START_DIRECTION = Direction.EAST;

@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class Day04Solver extends AbstractDayXXSolver {
+public class Day04Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partOneSolution() {

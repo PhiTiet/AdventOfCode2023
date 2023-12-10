@@ -4,7 +4,7 @@ import org.example.Solution.utils.FileReader;
 
 import java.util.List;
 
-public abstract class AbstractDayXXSolver implements DayXXSolver {
+public abstract class AbstractDayXXSolver<T> implements DayXXSolver<T> {
     protected final FileReader fileReader = new FileReader();
 
     @Override
@@ -15,10 +15,10 @@ public abstract class AbstractDayXXSolver implements DayXXSolver {
     }
 
     @Override
-    public abstract <T> T partOneSolution();
+    public abstract T partOneSolution();
 
     @Override
-    public abstract <T> T partTwoSolution();
+    public abstract T partTwoSolution();
 
     protected String getPuzzleInputPath() {
         return "/" + this.getClass().getSimpleName().substring(0, 5).toLowerCase() + ".txt";

@@ -6,7 +6,7 @@ import org.example.Solution.day02.model.Game;
 
 import java.util.List;
 
-public class Day02Solver extends AbstractDayXXSolver {
+public class Day02Solver extends AbstractDayXXSolver<Long> {
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
 
     @Override

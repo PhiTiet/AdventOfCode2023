@@ -17,7 +17,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<AbstractDayXXSolver> solvers = List.of(
+        List<AbstractDayXXSolver<Long>> solvers = List.of(
                 new Day01Solver(),
                 new Day02Solver(),
                 new Day04Solver(),
