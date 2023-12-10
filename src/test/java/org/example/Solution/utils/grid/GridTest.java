@@ -1,5 +1,7 @@
 package org.example.Solution.utils.grid;
 
+import org.example.Solution.model.grid.Grid;
+import org.example.Solution.model.grid.GridElement;
 import org.example.Solution.utils.FileReader;
 import org.junit.jupiter.api.Test;
 

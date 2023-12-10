@@ -1,8 +1,11 @@
-package org.example.Solution.utils.grid;
+package org.example.Solution.model.grid;
+
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 public class Grid<E extends GridElement> {
     private final List<E> elements;
     private final int gridSize;
@@ -64,5 +67,29 @@ public class Grid<E extends GridElement> {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    public Grid<E> filterGrid(List<E> selectedElements, E empty) {
+        Grid<E> filteredGrid = new Grid<>(elements, gridSize);
+
+        for (int y = 0; y < gridSize; y++) {
+            for (int x = 0; x < gridSize; x++) {
+                int index = getIndex(y, x);
+                E element = elements.get(index);
+
+                if (selectedElements.contains(element)) {
+                    filteredGrid.addElement(element, x, y);
+                } else {
+                    filteredGrid.addElement(empty, x, y);
+                }
+            }
+        }
+
+        return filteredGrid;
+    }
+
+    private void addElement(E element, int x, int y) {
+        int index = getIndex(y, x);
+        elements.set(index, element);
     }
 }

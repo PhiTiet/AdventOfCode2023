@@ -1,4 +1,4 @@
-package org.example.Solution.utils.grid;
+package org.example.Solution.model.grid;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

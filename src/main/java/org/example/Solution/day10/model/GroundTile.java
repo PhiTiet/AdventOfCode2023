@@ -1,7 +1,7 @@
 package org.example.Solution.day10.model;
 
 import lombok.Getter;
-import org.example.Solution.utils.grid.GridElement;
+import org.example.Solution.model.grid.GridElement;
 
 @Getter
 public class GroundTile extends GridElement {
