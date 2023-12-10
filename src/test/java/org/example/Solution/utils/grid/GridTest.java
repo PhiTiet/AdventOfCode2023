@@ -11,7 +11,7 @@ class GridTest {
     @Test
     void grid() {
         List<String> gridValues = fileReader.getLines("/day10.txt");
-        var grid = new Grid(gridValues, GridElement.class);
+        var grid = new Grid<GridElement>(gridValues, GridElement.class);
         grid.print();
     }
 }
