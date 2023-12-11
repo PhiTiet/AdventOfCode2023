@@ -1,13 +1,16 @@
 package org.example.Solution.model.grid;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 @AllArgsConstructor
+@Getter
 public class Grid<E extends GridElement> {
-    private final List<E> elements;
+    private List<E> elements;
     private final int gridSize;
 
     public Grid(List<String> lines, Class<E> elementClass) {
@@ -30,6 +33,10 @@ public class Grid<E extends GridElement> {
                 .findFirst().orElse(null);
     }
 
+    public void map(Function<E, E> mapFunction) {
+        elements = elements.stream().map(mapFunction).toList();
+    }
+
     public void print() {
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
@@ -40,6 +47,7 @@ public class Grid<E extends GridElement> {
             System.out.println();
         }
     }
+
 
     private int getIndex(int y, int x) {
         return y * gridSize + x;
@@ -54,27 +62,17 @@ public class Grid<E extends GridElement> {
         }
     }
 
-    public Grid<E> filterGrid(List<E> selectedElements, E empty) {
-        Grid<E> filteredGrid = new Grid<>(elements, gridSize);
-
+    public void filterGrid(List<E> selectedElements) {
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
                 int index = getIndex(y, x);
                 E element = elements.get(index);
 
-                if (selectedElements.contains(element)) {
-                    filteredGrid.addElement(element, x, y);
-                } else {
-                    filteredGrid.addElement(empty, x, y);
+                if (!selectedElements.contains(element)) {
+                    element.setSymbol(".");
                 }
             }
         }
-
-        return filteredGrid;
     }
 
-    private void addElement(E element, int x, int y) {
-        int index = getIndex(y, x);
-        elements.set(index, element);
-    }
 }

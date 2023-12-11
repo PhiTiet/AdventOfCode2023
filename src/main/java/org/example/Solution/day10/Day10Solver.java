@@ -9,6 +9,7 @@ import org.example.Solution.model.grid.GridElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.Solution.day10.model.GroundType.GROUND;
 import static org.example.Solution.day10.model.GroundType.exitDirection;
 
 public class Day10Solver extends AbstractDayXXSolver<Long> {
@@ -29,9 +30,35 @@ public class Day10Solver extends AbstractDayXXSolver<Long> {
     public Long partTwoSolution() {
         Grid<GroundTile> grid = new Grid<>(rawLines, GroundTile.class);
         var traversedSquares = getTraversedSquares(grid.getElementAt(START_X, START_Y), grid);
-        var newGrid = grid.filterGrid(traversedSquares, new GroundTile(0, 0, "."));
-        newGrid.print();
-        return null;
+        grid.filterGrid(traversedSquares);
+        grid.map(a -> new GroundTile(a.getX(), a.getY(), a.getSymbol()));
+        long insides = 0;
+        for (var element : grid.getElements()) {
+            if (element.getGroundType() != GROUND) {
+                continue;
+            }
+            var numVerticalPipes = 0;
+            var numNorthernCorners = 0;
+            var southernCorners = 0;
+            long counter = 1;
+            while (grid.getElementAt(element.getX() + counter, element.getY()) != null) {
+                var next = grid.getElementAt(element.getX() + counter, element.getY());
+                switch (next.getGroundType()) {
+                    case VERTICAL_PIPE -> {
+                        numVerticalPipes++;
+                    }
+                    case NORTH_EAST_PIPE, NORTH_WEST_PIPE -> {
+                        numNorthernCorners++;
+                    }
+                    case SOUTH_EAST_PIPE, SOUTH_WEST_PIPE -> {
+                        southernCorners++;
+                    }
+                }
+                counter++;
+            }
+            insides += ((long) Math.min(southernCorners, numNorthernCorners) + numVerticalPipes) % 2;
+        }
+        return insides;
     }
 
     private long getFurthestSquareDistance(GroundTile start, Grid<GroundTile> grid) {
