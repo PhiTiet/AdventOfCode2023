@@ -16,7 +16,7 @@ public class Day07Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partOneSolution() {
-        List<Hand> hands = getHands(rawLines, PART_ONE);
+        List<Hand> hands = getHands(getDefaultPuzzleInputLines(), PART_ONE);
         List<Hand> sorted = hands
                 .stream().sorted(reverseOrder())
                 .toList();
@@ -25,7 +25,7 @@ public class Day07Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partTwoSolution() {
-        List<Hand> hands = getHands(rawLines, PART_TWO);
+        List<Hand> hands = getHands(getDefaultPuzzleInputLines(), PART_TWO);
         var sorted = hands.stream()
                 .sorted(reverseOrder(new PartTwoHandComparator()))
                 .toList();

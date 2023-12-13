@@ -24,7 +24,7 @@ public class Day01Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partOneSolution() {
-        return rawLines.stream()
+        return getDefaultPuzzleInputLines().stream()
                 .map(this::removeChars)
                 .map(this::retainOuterNumericalCharacters)
                 .map(Long::parseLong)
@@ -34,7 +34,7 @@ public class Day01Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partTwoSolution() {
-        return rawLines.stream()
+        return getDefaultPuzzleInputLines().stream()
                 .map(this::writeOutNumbers)
                 .map(this::convertToListOfNumbers)
                 .map(this::getDesiredNumber)

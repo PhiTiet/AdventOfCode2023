@@ -29,9 +29,7 @@ public class Grid<E extends GridElement> {
     }
 
     public E getElementAt(long x, long y) {
-        return elements.stream()
-                .filter(element -> element.getX() == x && element.getY() == y)
-                .findFirst().orElse(null);
+        return elements.get(getIndex((int) x, (int) y));
     }
 
     public void map(Function<E, E> mapFunction) {
@@ -45,7 +43,7 @@ public class Grid<E extends GridElement> {
     public void print() {
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
-                int index = getIndex(y, x);
+                int index = getIndex(x, y);
                 GridElement element = elements.get(index);
                 System.out.print(element.getSymbol() + " ");
             }
@@ -54,7 +52,7 @@ public class Grid<E extends GridElement> {
     }
 
 
-    private int getIndex(int y, int x) {
+    protected int getIndex(int x, int y) {
         return y * gridSize + x;
     }
 
@@ -64,19 +62,6 @@ public class Grid<E extends GridElement> {
             return constructor.newInstance((long) x, (long) y, String.valueOf(symbol));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
-        }
-    }
-
-    public void filterGrid(List<E> selectedElements) {
-        for (int y = 0; y < gridSize; y++) {
-            for (int x = 0; x < gridSize; x++) {
-                int index = getIndex(y, x);
-                E element = elements.get(index);
-
-                if (!selectedElements.contains(element)) {
-                    element.setSymbol(".");
-                }
-            }
         }
     }
 

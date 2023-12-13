@@ -10,7 +10,7 @@ public class Day09Solver extends AbstractDayXXSolver<Long> {
     private final List<List<Long>> sequences;
 
     public Day09Solver() {
-        this.sequences = rawLines.stream()
+        this.sequences = getDefaultPuzzleInputLines().stream()
                 .map(a -> Arrays.stream(a.split(" ")).map(Long::parseLong).toList())
                 .toList();
     }

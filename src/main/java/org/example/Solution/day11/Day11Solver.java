@@ -17,7 +17,7 @@ public class Day11Solver extends AbstractDayXXSolver<Long> {
     private final List<Long> doubleSpaceYIndices;
 
     public Day11Solver() {
-        this.grid = new SpaceGrid(rawLines);
+        this.grid = new SpaceGrid(getDefaultPuzzleInputLines());
         doubleSpaceXIndices = grid.doubleSpaceXIndices();
         doubleSpaceYIndices = grid.doubleSpaceYIndices();
     }

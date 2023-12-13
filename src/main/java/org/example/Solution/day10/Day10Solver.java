@@ -2,6 +2,7 @@ package org.example.Solution.day10;
 
 import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day10.model.Direction;
+import org.example.Solution.day10.model.GroundGrid;
 import org.example.Solution.day10.model.GroundTile;
 import org.example.Solution.model.grid.Grid;
 import org.example.Solution.model.grid.GridElement;
@@ -9,17 +10,17 @@ import org.example.Solution.model.grid.GridElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.Solution.day10.model.GroundType.GROUND;
+import static java.lang.Math.min;
 import static org.example.Solution.day10.model.GroundType.exitDirection;
 
 public class Day10Solver extends AbstractDayXXSolver<Long> {
     private static final long START_X = 88;
     private static final long START_Y = 69;
     private static final Direction START_DIRECTION = Direction.EAST;
-    private final Grid<GroundTile> grid;
+    private final GroundGrid grid;
 
     public Day10Solver() {
-        this.grid = new Grid<>(rawLines, GroundTile.class);
+        this.grid = new GroundGrid(getDefaultPuzzleInputLines());
     }
 
     @Override
@@ -32,19 +33,15 @@ public class Day10Solver extends AbstractDayXXSolver<Long> {
     public Long partTwoSolution() {
         var traversedSquares = getTraversedSquares(grid.getElementAt(START_X, START_Y), grid);
         grid.filterGrid(traversedSquares);
-        grid.map(a -> new GroundTile(a.getX(), a.getY(), a.getSymbol()));
 
         long insides = 0;
 
-        for (var element : grid.getElements()) {
-            if (element.getGroundType() != GROUND) {
-                continue;
-            }
+        for (var element : grid.getEmptyGroundTiles()) {
             var numVerticalPipes = 0;
             var numNorthernCorners = 0;
             var southernCorners = 0;
             long counter = 1;
-            while (grid.getElementAt(element.getX() + counter, element.getY()) != null) {
+            while (element.getX() + counter < grid.getGridSize()) {
                 var next = grid.getElementAt(element.getX() + counter, element.getY());
                 switch (next.getGroundType()) {
                     case VERTICAL_PIPE -> {
@@ -59,9 +56,13 @@ public class Day10Solver extends AbstractDayXXSolver<Long> {
                 }
                 counter++;
             }
-            insides += ((long) Math.min(southernCorners, numNorthernCorners) + numVerticalPipes) % 2;
+            insides += isInside(southernCorners, numNorthernCorners, numVerticalPipes) ? 1 : 0;
         }
         return insides;
+    }
+
+    private boolean isInside(int southernCorners, int numNorthernCorners, int numVerticalPipes) {
+        return ((long) min(southernCorners, numNorthernCorners) + numVerticalPipes) % 2 == 1;
     }
 
     private long getFurthestSquareDistance(GroundTile start, Grid<GroundTile> grid) {
