@@ -1,13 +1,11 @@
 package org.example.Solution.model.grid;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-@AllArgsConstructor
 @Getter
 public class Grid<E extends GridElement> {
     protected List<E> elements;
