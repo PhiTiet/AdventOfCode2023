@@ -5,7 +5,6 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 @AllArgsConstructor
@@ -30,10 +29,6 @@ public class Grid<E extends GridElement> {
 
     public E getElementAt(long x, long y) {
         return elements.get(getIndex((int) x, (int) y));
-    }
-
-    public void map(Function<E, E> mapFunction) {
-        elements = elements.stream().map(mapFunction).toList();
     }
 
     public List<E> getElementsWhere(Predicate<E> filterFunction) {
