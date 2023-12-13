@@ -6,12 +6,13 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 @AllArgsConstructor
 @Getter
 public class Grid<E extends GridElement> {
-    private List<E> elements;
-    private final int gridSize;
+    protected List<E> elements;
+    protected final int gridSize;
 
     public Grid(List<String> lines, Class<E> elementClass) {
         elements = new ArrayList<>();
@@ -35,6 +36,10 @@ public class Grid<E extends GridElement> {
 
     public void map(Function<E, E> mapFunction) {
         elements = elements.stream().map(mapFunction).toList();
+    }
+
+    public List<E> getElementsWhere(Predicate<E> filterFunction) {
+        return elements.stream().filter(filterFunction).toList();
     }
 
     public void print() {

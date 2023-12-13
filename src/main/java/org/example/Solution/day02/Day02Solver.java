@@ -8,10 +8,14 @@ import java.util.List;
 
 public class Day02Solver extends AbstractDayXXSolver<Long> {
     private static final CubeUpperLimit cubeUpperLimit = new CubeUpperLimit(14, 13, 12);
+    private final List<Game> games;
+
+    public Day02Solver() {
+        this.games = getDefaultPuzzleInputLines().stream().map(Day02Solver::getGame).toList();
+    }
 
     @Override
     public Long partOneSolution() {
-        var games = getGames();
         return games.stream()
                 .filter(game -> game.possible(cubeUpperLimit))
                 .map(Game::getGameId)
@@ -20,14 +24,10 @@ public class Day02Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partTwoSolution() {
-        return getGames().stream()
+        return games.stream()
                 .map(Game::getCubeUpperLimit)
                 .map(CubeUpperLimit::getPower)
                 .reduce(0L, Long::sum);
-    }
-
-    private List<Game> getGames() {
-        return getDefaultPuzzleInputLines().stream().map(Day02Solver::getGame).toList();
     }
 
     private static Game getGame(String l) {

@@ -9,16 +9,24 @@ import java.util.List;
 
 
 public class Day04Solver extends AbstractDayXXSolver<Long> {
+    private final List<ScratchCard> cards;
+
+    public Day04Solver() {
+        this.cards = getDefaultPuzzleInputLines()
+                .stream()
+                .map(a -> a.split(": ")[1])
+                .map(ScratchCard::new)
+                .toList();
+    }
 
     @Override
     public Long partOneSolution() {
-        List<ScratchCard> cards = getScratchCards();
         return cards.stream().map(ScratchCard::getScore).reduce(0L, Long::sum);
     }
 
     @Override
     public Long partTwoSolution() {
-        List<Long> intersections = getScratchCards().stream()
+        List<Long> intersections = cards.stream()
                 .map(ScratchCard::getIntersection)
                 .toList();
         return calculateCopies(intersections);
@@ -34,11 +42,4 @@ public class Day04Solver extends AbstractDayXXSolver<Long> {
         return copies.stream().reduce(0L, Long::sum);
     }
 
-    private List<ScratchCard> getScratchCards() {
-        return getDefaultPuzzleInputLines()
-                .stream()
-                .map(a -> a.split(": ")[1])
-                .map(ScratchCard::new)
-                .toList();
-    }
 }

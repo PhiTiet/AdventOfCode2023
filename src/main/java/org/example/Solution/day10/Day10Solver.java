@@ -16,23 +16,26 @@ public class Day10Solver extends AbstractDayXXSolver<Long> {
     private static final long START_X = 88;
     private static final long START_Y = 69;
     private static final Direction START_DIRECTION = Direction.EAST;
-    private final List<String> rawLines = getDefaultPuzzleInputLines();
+    private final Grid<GroundTile> grid;
+
+    public Day10Solver() {
+        this.grid = new Grid<>(rawLines, GroundTile.class);
+    }
 
     @Override
     public Long partOneSolution() {
-        Grid<GroundTile> grid = new Grid<>(rawLines, GroundTile.class);
         var start = grid.getElementAt(START_X, START_Y);
-
         return getFurthestSquareDistance(start, grid);
     }
 
     @Override
     public Long partTwoSolution() {
-        Grid<GroundTile> grid = new Grid<>(rawLines, GroundTile.class);
         var traversedSquares = getTraversedSquares(grid.getElementAt(START_X, START_Y), grid);
         grid.filterGrid(traversedSquares);
         grid.map(a -> new GroundTile(a.getX(), a.getY(), a.getSymbol()));
+
         long insides = 0;
+
         for (var element : grid.getElements()) {
             if (element.getGroundType() != GROUND) {
                 continue;

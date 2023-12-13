@@ -13,7 +13,6 @@ import static org.example.Solution.utils.AdventPart.PART_ONE;
 import static org.example.Solution.utils.AdventPart.PART_TWO;
 
 public class Day07Solver extends AbstractDayXXSolver<Long> {
-    private final List<String> rawLines = getDefaultPuzzleInputLines();
 
     @Override
     public Long partOneSolution() {

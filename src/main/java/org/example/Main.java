@@ -11,6 +11,7 @@ import org.example.Solution.day07.Day07Solver;
 import org.example.Solution.day08.Day08Solver;
 import org.example.Solution.day09.Day09Solver;
 import org.example.Solution.day10.Day10Solver;
+import org.example.Solution.day11.Day11Solver;
 
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class Main {
                 new Day07Solver(),
                 new Day08Solver(),
                 new Day09Solver(),
-                new Day10Solver()).reversed();
+                new Day10Solver(),
+                new Day11Solver()).reversed();
 
         for (var solver : solvers) {
             solver.printSolutions();

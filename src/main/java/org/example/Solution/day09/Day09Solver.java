@@ -7,24 +7,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Day09Solver extends AbstractDayXXSolver<Long> {
-    private final List<String> rawLines = getDefaultPuzzleInputLines();
+    private final List<List<Long>> sequences;
+
+    public Day09Solver() {
+        this.sequences = rawLines.stream()
+                .map(a -> Arrays.stream(a.split(" ")).map(Long::parseLong).toList())
+                .toList();
+    }
 
     @Override
     public Long partOneSolution() {
-        var sequences = getSequences(rawLines);
         return sequences.stream().map(this::getLastDifference).reduce(0L, Long::sum);
     }
 
     @Override
     public Long partTwoSolution() {
-        var sequences = getSequences(rawLines).stream().map(List::reversed).toList();
-        return sequences.stream().map(this::getLastDifference).reduce(0L, Long::sum);
-    }
-
-    private List<List<Long>> getSequences(List<String> rawLines) {
-        return rawLines.stream()
-                .map(a -> Arrays.stream(a.split(" ")).map(Long::parseLong).toList())
-                .toList();
+        var reversedSequences = sequences.stream().map(List::reversed).toList();
+        return reversedSequences.stream().map(this::getLastDifference).reduce(0L, Long::sum);
     }
 
     private Long getLastDifference(List<Long> sequence) {

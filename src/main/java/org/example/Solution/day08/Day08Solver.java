@@ -8,8 +8,12 @@ import java.util.List;
 import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 
 public class Day08Solver extends AbstractDayXXSolver<Long> {
-    private final List<String> rawCommandsAndNodes = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
-    private final NetworkExecutor networkExecutor = new NetworkExecutor(rawCommandsAndNodes);
+    private final NetworkExecutor networkExecutor;
+
+    public Day08Solver() {
+        List<String> rawCommandsAndNodes = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
+        this.networkExecutor = new NetworkExecutor(rawCommandsAndNodes);
+    }
 
     @Override
     public Long partOneSolution() {

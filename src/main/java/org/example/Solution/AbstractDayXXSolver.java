@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class AbstractDayXXSolver<T> implements DayXXSolver<T> {
     protected final FileReader fileReader = new FileReader();
+    protected final List<String> rawLines = getDefaultPuzzleInputLines();
 
     @Override
     public void printSolutions() {

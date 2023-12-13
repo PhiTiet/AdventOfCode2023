@@ -12,13 +12,17 @@ import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
 
 public class Day05Solver extends AbstractDayXXSolver<Long> {
     private final List<String> lines = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
+    private final MapperChain mapperChain;
+
+    public Day05Solver() {
+        this.mapperChain = new MapperChain(lines.subList(1, lines.size()));
+    }
 
     @Override
     public Long partOneSolution() {
         var inputs = getInput();
-        var chain = getChain();
         return inputs.stream()
-                .map(chain::map)
+                .map(mapperChain::map)
                 .min(Long::compare)
                 .orElseThrow(IllegalStateException::new);
     }
@@ -26,8 +30,7 @@ public class Day05Solver extends AbstractDayXXSolver<Long> {
     @Override
     public Long partTwoSolution() {
         var inputs = getRangeInput();
-        var chain = getChain();
-        var mapped = chain.map(inputs);
+        var mapped = mapperChain.map(inputs);
         return mapped.stream().map(Range::getMinimum).sorted().findFirst().get();
     }
 
@@ -38,10 +41,6 @@ public class Day05Solver extends AbstractDayXXSolver<Long> {
             ret.add(Range.of(longs.get(i), longs.get(i) + longs.get(i + 1)));
         }
         return ret;
-    }
-
-    private MapperChain getChain() {
-        return new MapperChain(lines.subList(1, lines.size()));
     }
 
     private List<Long> getInput() {

@@ -10,6 +10,7 @@ import org.example.Solution.day07.Day07Solver;
 import org.example.Solution.day08.Day08Solver;
 import org.example.Solution.day09.Day09Solver;
 import org.example.Solution.day10.Day10Solver;
+import org.example.Solution.day11.Day11Solver;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -61,12 +62,17 @@ class SolverTest {
 
         @Test
         void dayTen() {
-            correctLongSolutions(new Day10Solver(), 6864L, null);
+            correctLongSolutions(new Day10Solver(), 6864L, 349L);
         }
 
-        void correctLongSolutions(AbstractDayXXSolver solver, Long answerPartOne, Long answerPartTwo) {
-            assertThat((Long) solver.partOneSolution()).isEqualTo(answerPartOne);
-            assertThat((Long) solver.partTwoSolution()).isEqualTo(answerPartTwo);
+        @Test
+        void dayEleven() {
+            correctLongSolutions(new Day11Solver(), 9681886L, null);
+        }
+
+        void correctLongSolutions(AbstractDayXXSolver<Long> solver, Long answerPartOne, Long answerPartTwo) {
+            assertThat(solver.partOneSolution()).isEqualTo(answerPartOne);
+            assertThat(solver.partTwoSolution()).isEqualTo(answerPartTwo);
         }
 
     }
