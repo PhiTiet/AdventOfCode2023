@@ -34,8 +34,11 @@ public class Day10Solver extends AbstractDayXXSolver<Long> {
         var traversedSquares = getTraversedSquares(grid.getElementAt(START_X, START_Y), grid);
         grid.filterGrid(traversedSquares);
 
-        long insides = 0;
+        return numberOfInscribedTiles();
+    }
 
+    private long numberOfInscribedTiles() {
+        long insides = 0;
         for (var element : grid.getEmptyGroundTiles()) {
             var numVerticalPipes = 0;
             var numNorthernCorners = 0;
