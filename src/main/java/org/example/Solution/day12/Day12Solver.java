@@ -1,16 +1,14 @@
 package org.example.Solution.day12;
 
-import org.apache.commons.lang3.SerializationUtils;
 import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day12.model.ConditionRecord;
-import org.example.Solution.day12.model.DamageState;
 
 import java.util.*;
 
 public class Day12Solver extends AbstractDayXXSolver<Long> {
 
     private final List<ConditionRecord> records = getConditionRecords();
-    private Map<ArrayList<DamageState>, Long> previouslySearched = new HashMap<>();
+    private Map<String, Long> previouslySearched = new HashMap<>();
 
     @Override
     public Long partOneSolution() {
@@ -26,33 +24,33 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
 
     private Long getNumberOfLegalSequences(ConditionRecord record) {
         previouslySearched = new HashMap<>();
-        Long allPossibleSequences = getAllPossibleSequences(new ArrayList<>(record.getStates()), record.getSequences());
+        Long allPossibleSequences = getAllPossibleSequences(record.getStates(), record.getSequences());
         return allPossibleSequences;
     }
 
-    private Long getAllPossibleSequences(ArrayList<DamageState> states, List<Integer> matchingStates) {
-        if (previouslySearched.containsKey(states)){
-            return previouslySearched.get(states);
+    private Long getAllPossibleSequences(String damageState, List<Integer> matchingStates) {
+        if (previouslySearched.containsKey(damageState)){
+            return previouslySearched.get(damageState);
         }
-        if (canEvaluateState(states)) {
-            return sequenceFromState(states).equals(matchingStates) ? 1L : 0L;
+        if (canEvaluateState(damageState)) {
+            return sequenceFromState(damageState).equals(matchingStates) ? 1L : 0L;
         }
 
-        long matching = getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.OPERATIONAL), matchingStates) +
-                getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.DAMAGED), matchingStates);
-        previouslySearched.put(states, matching);
+        long matching = getAllPossibleSequences(statesWithNextUnknownChanged(damageState, "."), matchingStates) +
+                getAllPossibleSequences(statesWithNextUnknownChanged(damageState, "#"), matchingStates);
+        previouslySearched.put(damageState, matching);
         return matching;
     }
 
-    public ArrayList<Integer> sequenceFromState(List<DamageState> states) {
+    public ArrayList<Integer> sequenceFromState(String states) {
         ArrayList<Integer> damagedSequences = new ArrayList<>();
         int count;
-        for (int i = 0; i < states.size(); i++) {
-            if (!(states.get(i) == DamageState.DAMAGED)) {
+        for (int i = 0; i < states.length(); i++) {
+            if (!(states.charAt(i) == '#')) {
                 continue;
             }
             count = 1;
-            while (i + count < states.size() && states.get(i + count) == DamageState.DAMAGED) {
+            while (i + count < states.length() && states.charAt(i + count) == '#') {
                 count++;
             }
             damagedSequences.add(count);
@@ -61,14 +59,14 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         return damagedSequences;
     }
 
-    public ArrayList<DamageState> statesWithNextUnknownChanged(ArrayList<DamageState> states, DamageState newDamageState) {
-        ArrayList<DamageState> copyOfStates = SerializationUtils.clone(states);
-        copyOfStates.set(copyOfStates.indexOf(DamageState.UNKNOWN), newDamageState);
-        return copyOfStates;
+    public String statesWithNextUnknownChanged(String damageState, String newValue) {
+        String copyOfStates = new String(damageState);
+        return copyOfStates.replaceFirst("\\?", newValue);
+
     }
 
-    public boolean canEvaluateState(List<DamageState> damageStates) {
-        return !damageStates.contains(DamageState.UNKNOWN);
+    public boolean canEvaluateState(String damageStates) {
+        return !damageStates.contains("?");
     }
 
     private List<ConditionRecord> getConditionRecords() {
@@ -76,11 +74,10 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
     }
 
     private ConditionRecord recordFromString(String line) {
-        var conditionsString = line.split(" ")[0].split("");
+        var conditionsString = line.split(" ")[0];
         var sequencesString = line.split(" ")[1];
 
-        List<DamageState> conditions = Arrays.stream(conditionsString).map(DamageState::fromString).toList();
         List<Integer> sequences = Arrays.stream(sequencesString.split(",")).map(Integer::valueOf).toList();
-        return new ConditionRecord(conditions, sequences);
+        return new ConditionRecord(conditionsString, sequences);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class ConditionRecord {
-    private List<DamageState> states;
+    private String states;
     private List<Integer> sequences;
 
 

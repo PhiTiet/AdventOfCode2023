@@ -12,13 +12,8 @@ import org.example.Solution.day09.Day09Solver;
 import org.example.Solution.day10.Day10Solver;
 import org.example.Solution.day11.Day11Solver;
 import org.example.Solution.day12.Day12Solver;
-import org.example.Solution.day12.model.DamageState;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
