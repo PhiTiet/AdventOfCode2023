@@ -1,7 +1,5 @@
 package org.example.Solution.day12.model;
 
-import org.example.Solution.day07.model.Card;
-
 public enum DamageState {
     OPERATIONAL("."),
     DAMAGED("#"),

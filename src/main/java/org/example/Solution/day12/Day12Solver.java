@@ -4,9 +4,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day12.model.ConditionRecord;
 import org.example.Solution.day12.model.DamageState;
-import org.example.Solution.utils.ArrayListUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,18 +26,19 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
     }
 
     private Long getNumberOfLegalSequences(ConditionRecord record){
-        ArrayList<List<Integer>> allPossibleSequences = getAllPossibleSequences(new ArrayList<>(record.getStates()), new ArrayList<>());
-        return allPossibleSequences.stream().filter(a -> a.equals(record.getSequences())).count();
+        return getAllPossibleSequences(new ArrayList<>(record.getStates()),0, record.getSequences());
     }
 
-    private ArrayList<List<Integer>> getAllPossibleSequences(ArrayList<DamageState> states, List<List<Integer>> allStates) {
+    private Long getAllPossibleSequences(ArrayList<DamageState> states, long count, List<Integer> matchingStates) {
         if (canEvaluateState(states)){
-            return ArrayListUtils.ArrayListOf(sequenceFromState(states));
+            if (sequenceFromState(states).equals(matchingStates)){
+                return 1L;
+            }
+            return 0L;
         }
-        var operational = getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.OPERATIONAL), allStates);
-        var damaged = getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.DAMAGED), allStates);
-        operational.addAll(damaged);
-        return operational;
+        count += getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.OPERATIONAL), 0, matchingStates);
+        count += getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.DAMAGED), 0, matchingStates);
+        return count;
     }
 
     public ArrayList<Integer> sequenceFromState(List<DamageState> states) {
