@@ -5,13 +5,12 @@ import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day12.model.ConditionRecord;
 import org.example.Solution.day12.model.DamageState;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Day12Solver extends AbstractDayXXSolver<Long> {
 
     private final List<ConditionRecord> records = getConditionRecords();
+    private Map<ArrayList<DamageState>, Long> previouslySearched = new HashMap<>();
 
     @Override
     public Long partOneSolution() {
@@ -26,19 +25,23 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
     }
 
     private Long getNumberOfLegalSequences(ConditionRecord record) {
-        return getAllPossibleSequences(new ArrayList<>(record.getStates()), 0, record.getSequences());
+        previouslySearched = new HashMap<>();
+        Long allPossibleSequences = getAllPossibleSequences(new ArrayList<>(record.getStates()), record.getSequences());
+        return allPossibleSequences;
     }
 
-    private Long getAllPossibleSequences(ArrayList<DamageState> states, long count, List<Integer> matchingStates) {
-        if (canEvaluateState(states)) {
-            if (sequenceFromState(states).equals(matchingStates)) {
-                return 1L;
-            }
-            return 0L;
+    private Long getAllPossibleSequences(ArrayList<DamageState> states, List<Integer> matchingStates) {
+        if (previouslySearched.containsKey(states)){
+            return previouslySearched.get(states);
         }
-        count += getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.OPERATIONAL), 0, matchingStates);
-        count += getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.DAMAGED), 0, matchingStates);
-        return count;
+        if (canEvaluateState(states)) {
+            return sequenceFromState(states).equals(matchingStates) ? 1L : 0L;
+        }
+
+        long matching = getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.OPERATIONAL), matchingStates) +
+                getAllPossibleSequences(statesWithNextUnknownChanged(states, DamageState.DAMAGED), matchingStates);
+        previouslySearched.put(states, matching);
+        return matching;
     }
 
     public ArrayList<Integer> sequenceFromState(List<DamageState> states) {
