@@ -28,8 +28,8 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         return allPossibleSequences;
     }
 
-    private Long getAllPossibleSequences(String damageState, List<Integer> matchingStates) {
-        if (previouslySearched.containsKey(damageState)){
+    private Long getAllPossibleSequences(String damageState, String matchingStates) {
+        if (previouslySearched.containsKey(damageState)) {
             return previouslySearched.get(damageState);
         }
         if (canEvaluateState(damageState)) {
@@ -42,8 +42,8 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         return matching;
     }
 
-    public ArrayList<Integer> sequenceFromState(String states) {
-        ArrayList<Integer> damagedSequences = new ArrayList<>();
+    public String sequenceFromState(String states) {
+        List<String> damagedSequences = new ArrayList<>();
         int count;
         for (int i = 0; i < states.length(); i++) {
             if (!(states.charAt(i) == '#')) {
@@ -53,10 +53,10 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
             while (i + count < states.length() && states.charAt(i + count) == '#') {
                 count++;
             }
-            damagedSequences.add(count);
+            damagedSequences.add(String.valueOf(count));
             i += count - 1;
         }
-        return damagedSequences;
+        return String.join(",", damagedSequences);
     }
 
     public String statesWithNextUnknownChanged(String damageState, String newValue) {
@@ -77,7 +77,7 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         var conditionsString = line.split(" ")[0];
         var sequencesString = line.split(" ")[1];
 
-        List<Integer> sequences = Arrays.stream(sequencesString.split(",")).map(Integer::valueOf).toList();
-        return new ConditionRecord(conditionsString, sequences);
+
+        return new ConditionRecord(conditionsString, sequencesString);
     }
 }
