@@ -11,6 +11,7 @@ import org.example.Solution.day08.Day08Solver;
 import org.example.Solution.day09.Day09Solver;
 import org.example.Solution.day10.Day10Solver;
 import org.example.Solution.day11.Day11Solver;
+import org.example.Solution.day12.Day12Solver;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -69,6 +70,9 @@ class SolverTest {
         void dayEleven() {
             correctLongSolutions(new Day11Solver(), 9681886L, 791134099634L);
         }
+
+        @Test
+        void dayTwelve() {correctLongSolutions(new Day12Solver(), 0L, null);}
 
         void correctLongSolutions(AbstractDayXXSolver<Long> solver, Long answerPartOne, Long answerPartTwo) {
             assertThat(solver.partOneSolution()).isEqualTo(answerPartOne);
