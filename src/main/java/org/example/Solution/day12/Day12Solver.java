@@ -25,13 +25,13 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         return null;
     }
 
-    private Long getNumberOfLegalSequences(ConditionRecord record){
-        return getAllPossibleSequences(new ArrayList<>(record.getStates()),0, record.getSequences());
+    private Long getNumberOfLegalSequences(ConditionRecord record) {
+        return getAllPossibleSequences(new ArrayList<>(record.getStates()), 0, record.getSequences());
     }
 
     private Long getAllPossibleSequences(ArrayList<DamageState> states, long count, List<Integer> matchingStates) {
-        if (canEvaluateState(states)){
-            if (sequenceFromState(states).equals(matchingStates)){
+        if (canEvaluateState(states)) {
+            if (sequenceFromState(states).equals(matchingStates)) {
                 return 1L;
             }
             return 0L;
@@ -45,7 +45,7 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         ArrayList<Integer> damagedSequences = new ArrayList<>();
         int count;
         for (int i = 0; i < states.size(); i++) {
-            if (!(states.get(i) == DamageState.DAMAGED)){
+            if (!(states.get(i) == DamageState.DAMAGED)) {
                 continue;
             }
             count = 1;
@@ -58,19 +58,21 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
         return damagedSequences;
     }
 
-    public ArrayList<DamageState> statesWithNextUnknownChanged(ArrayList<DamageState> states , DamageState newDamageState){
+    public ArrayList<DamageState> statesWithNextUnknownChanged(ArrayList<DamageState> states, DamageState newDamageState) {
         ArrayList<DamageState> copyOfStates = SerializationUtils.clone(states);
         copyOfStates.set(copyOfStates.indexOf(DamageState.UNKNOWN), newDamageState);
         return copyOfStates;
     }
+
     public boolean canEvaluateState(List<DamageState> damageStates) {
         return !damageStates.contains(DamageState.UNKNOWN);
     }
+
     private List<ConditionRecord> getConditionRecords() {
         return getDefaultPuzzleInputLines().stream().map(this::recordFromString).toList();
     }
 
-    private ConditionRecord recordFromString(String line){
+    private ConditionRecord recordFromString(String line) {
         var conditionsString = line.split(" ")[0].split("");
         var sequencesString = line.split(" ")[1];
 
