@@ -83,7 +83,7 @@ public class NetworkExecutor {
                 .map(TraverseCommand::fromString)
                 .toList();
 
-        nodes = Arrays.stream(lines.get(1).split(RegexUtils.WINDOWS_NEWLINE))
+        nodes = Arrays.stream(lines.get(1).split(RegexUtils.SYSTEM_NEWLINE))
                 .map(NetworkNode::new)
                 .toList();
         lookupMap = nodes.stream().collect(Collectors.toMap(a -> a.name, b -> b));

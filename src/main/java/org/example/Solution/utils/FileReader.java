@@ -10,7 +10,7 @@ import static org.example.Solution.utils.RegexUtils.*;
 public class FileReader {
 
     public List<String> getLines(String path) {
-        return getLines(path, WINDOWS_NEWLINE);
+        return getLines(path, SYSTEM_NEWLINE);
     }
 
     public List<String> getLines(String path, String delimiter) {

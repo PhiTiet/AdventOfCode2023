@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.example.Solution.utils.RegexUtils.WINDOWS_NEWLINE;
+import static org.example.Solution.utils.RegexUtils.SYSTEM_NEWLINE;
 
 public class Day05Solver extends AbstractDayXXSolver<Long> {
-    private final List<String> lines = getDefaultPuzzleInputWithDelimiter(WINDOWS_NEWLINE + WINDOWS_NEWLINE);
+    private final List<String> lines = getDefaultPuzzleInputWithDelimiter(SYSTEM_NEWLINE + SYSTEM_NEWLINE);
     private final MapperChain mapperChain;
 
     public Day05Solver() {
