@@ -19,17 +19,19 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partTwoSolution() {
+        //todo implement
         return null;
     }
 
     private Long getNumberOfLegalSequences(ConditionRecord record) {
+        previouslySearched = new HashMap<>();
         Long allPossibleSequences = getAllPossibleSequences(record.getStates(), record.getSequences());
         return allPossibleSequences;
     }
 
     private Long getAllPossibleSequences(String damageState, String matchingStates) {
-        if (previouslySearched.containsKey(damageState+matchingStates)) {
-            return previouslySearched.get(damageState+matchingStates);
+        if (previouslySearched.containsKey(damageState)) {
+            return previouslySearched.get(damageState);
         }
         if (canEvaluateState(damageState)) {
             return sequenceFromState(damageState).equals(matchingStates) ? 1L : 0L;
@@ -37,7 +39,7 @@ public class Day12Solver extends AbstractDayXXSolver<Long> {
 
         long matching = getAllPossibleSequences(statesWithNextUnknownChanged(damageState, "."), matchingStates) +
                 getAllPossibleSequences(statesWithNextUnknownChanged(damageState, "#"), matchingStates);
-        previouslySearched.put(damageState+matchingStates, matching);
+        previouslySearched.put(damageState, matching);
         return matching;
     }
 
