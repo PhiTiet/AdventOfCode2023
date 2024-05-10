@@ -85,7 +85,7 @@ class SolverTest {
 
         @Test
         void dayFourteen() {
-            correctLongSolutions(new Day14Solver(), null, null);
+            correctLongSolutions(new Day14Solver(), 112773L, 98894L);
         }
 
 
