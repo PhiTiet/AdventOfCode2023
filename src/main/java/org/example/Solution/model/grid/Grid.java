@@ -28,6 +28,9 @@ public class Grid<E extends GridElement> {
     public E getElementAt(long x, long y) {
         return elements.get(getIndex((int) x, (int) y));
     }
+    public void setElementAt(long x, long y, E type){
+        elements.set(getIndex((int) x, (int) y), type);
+    }
 
     public List<E> getElementsWhere(Predicate<E> filterFunction) {
         return elements.stream().filter(filterFunction).toList();
@@ -55,6 +58,19 @@ public class Grid<E extends GridElement> {
             return constructor.newInstance((long) x, (long) y, String.valueOf(symbol));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
+        }
+    }
+    public void rotate90Clockwise() {
+        for (int i = 0; i < gridSize / 2; i++) {
+            for (int j = i; j < gridSize - i - 1; j++) {
+                var temp = getElementAt(i,j);
+                int n1j = gridSize - 1 - j;
+                int n1i = gridSize - 1 - i;
+                setElementAt(i,j, getElementAt(n1j, i));
+                setElementAt(n1j, i, getElementAt(n1i, n1j));
+                setElementAt(n1i, n1j, getElementAt(j, n1i));
+                setElementAt(j, n1i, temp);
+            }
         }
     }
 

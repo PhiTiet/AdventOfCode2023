@@ -8,12 +8,17 @@ public class Day14Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partOneSolution() {
-        rockGrid.print();
+        rockGrid.slideNorth();
+//        return rockGrid.getScore();
         return null;
     }
 
     @Override
     public Long partTwoSolution() {
+        rockGrid.print();
+        System.out.println("------");
+        rockGrid.rotate90Clockwise();
+        rockGrid.print();
         return null;
     }
 }
