@@ -91,7 +91,7 @@ class SolverTest {
 
         @Test
         void dayFifteen(){
-            correctIntegerSolutions(new Day15Solver(), 519603, null);
+            correctIntegerSolutions(new Day15Solver(), 519603, 244342);
         }
 
 

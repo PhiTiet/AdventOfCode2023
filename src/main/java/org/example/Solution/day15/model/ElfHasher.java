@@ -7,7 +7,7 @@ public class ElfHasher {
             int currentASCII = unhashed.charAt(i);
             curr += currentASCII;
             curr *= 17;
-            curr = curr % 256;
+            curr %= 256;
         }
         return curr;
     }
