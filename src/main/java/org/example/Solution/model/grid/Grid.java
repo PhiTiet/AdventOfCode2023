@@ -3,6 +3,7 @@ package org.example.Solution.model.grid;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -46,6 +47,10 @@ public class Grid<E extends GridElement> {
             }
             System.out.println();
         }
+    }
+
+    public void sortElements(){
+        Collections.sort(elements);
     }
 
     protected int getIndex(int x, int y) {

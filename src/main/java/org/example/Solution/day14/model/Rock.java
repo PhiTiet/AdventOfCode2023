@@ -12,7 +12,7 @@ public class Rock extends GridElement {
     private RockType rockType;
 
     public Rock(long x, long y, String symbol) {
-        super(x,y,symbol);
+        super(x, y, symbol);
         rockType = symbol.equals("O") ? ROLLING_ROCK : symbol.equals("#") ? STEADFAST_ROCK : EMPTY;
     }
 }
