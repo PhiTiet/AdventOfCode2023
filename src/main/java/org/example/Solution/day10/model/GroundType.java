@@ -1,8 +1,10 @@
 package org.example.Solution.day10.model;
 
 import lombok.Getter;
+import org.example.Solution.utils.model.Direction;
 
-import static org.example.Solution.day10.model.Direction.*;
+import static org.example.Solution.utils.model.Direction.*;
+
 
 @Getter
 public enum GroundType {

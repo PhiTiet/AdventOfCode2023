@@ -2,7 +2,7 @@ package org.example.Solution.day07.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.example.Solution.utils.AdventPart;
+import org.example.Solution.utils.model.AdventPart;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import static java.util.Collections.max;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static org.example.Solution.day07.model.HandType.*;
-import static org.example.Solution.utils.AdventPart.PART_ONE;
+import static org.example.Solution.utils.model.AdventPart.PART_ONE;
 import static org.example.Solution.utils.StringUtils.toCharacterList;
 
 @Getter

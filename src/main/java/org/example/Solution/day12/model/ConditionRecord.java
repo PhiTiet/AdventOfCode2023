@@ -8,6 +8,4 @@ import lombok.Getter;
 public class ConditionRecord {
     private String states;
     private String sequences;
-
-
 }

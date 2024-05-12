@@ -3,14 +3,14 @@ package org.example.Solution.day07;
 import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day07.model.Hand;
 import org.example.Solution.day07.model.comparator.PartTwoHandComparator;
-import org.example.Solution.utils.AdventPart;
+import org.example.Solution.utils.model.AdventPart;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.Collections.reverseOrder;
-import static org.example.Solution.utils.AdventPart.PART_ONE;
-import static org.example.Solution.utils.AdventPart.PART_TWO;
+import static org.example.Solution.utils.model.AdventPart.PART_ONE;
+import static org.example.Solution.utils.model.AdventPart.PART_TWO;
 
 public class Day07Solver extends AbstractDayXXSolver<Long> {
 

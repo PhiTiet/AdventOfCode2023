@@ -1,11 +1,11 @@
 package org.example.Solution.day10;
 
 import org.example.Solution.AbstractDayXXSolver;
-import org.example.Solution.day10.model.Direction;
 import org.example.Solution.day10.model.GroundGrid;
 import org.example.Solution.day10.model.GroundTile;
 import org.example.Solution.model.grid.Grid;
 import org.example.Solution.model.grid.GridElement;
+import org.example.Solution.utils.model.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
