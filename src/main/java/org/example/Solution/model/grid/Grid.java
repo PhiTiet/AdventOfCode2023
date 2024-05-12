@@ -28,7 +28,8 @@ public class Grid<E extends GridElement> {
     public E getElementAt(long x, long y) {
         return elements.get(getIndex((int) x, (int) y));
     }
-    public void setElementAt(long x, long y, E type){
+
+    public void setElementAt(long x, long y, E type) {
         elements.set(getIndex((int) x, (int) y), type);
     }
 
@@ -46,7 +47,6 @@ public class Grid<E extends GridElement> {
             System.out.println();
         }
     }
-
 
     protected int getIndex(int x, int y) {
         return y * gridSize + x;
