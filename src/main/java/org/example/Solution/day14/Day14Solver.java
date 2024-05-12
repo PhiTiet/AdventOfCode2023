@@ -39,7 +39,7 @@ public class Day14Solver extends AbstractDayXXSolver<Long> {
         var countMap = list.stream().collect(groupingBy(c -> c, counting()));
     }
 
-    private void cycle(){
+    private void cycle() {
         for (int i = 0; i < 4; i++) {
             rockGrid.slideNorth();
             rockGrid.rotate90CounterClockwise();

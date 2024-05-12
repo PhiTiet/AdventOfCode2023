@@ -14,9 +14,9 @@ public class GridElement implements Comparable<GridElement> {
 
     @Override
     public int compareTo(GridElement other) {
-        if (y == other.y){
+        if (y == other.y) {
             return Long.compare(x, other.getX());
-        };
+        }
         return Long.compare(y, other.y);
     }
 }

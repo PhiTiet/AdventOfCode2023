@@ -49,7 +49,7 @@ public class Grid<E extends GridElement> {
         }
     }
 
-    public void sortElements(){
+    public void sortElements() {
         Collections.sort(elements);
     }
 
