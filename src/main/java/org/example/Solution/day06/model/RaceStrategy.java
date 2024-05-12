@@ -1,4 +1,4 @@
 package org.example.Solution.day06.model;
 
-public record RaceStrategy (long windup) {
+public record RaceStrategy(long windup) {
 }
