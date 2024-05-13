@@ -16,6 +16,7 @@ import org.example.Solution.day13.Day13Solver;
 import org.example.Solution.day14.Day14Solver;
 import org.example.Solution.day15.Day15Solver;
 import org.example.Solution.day16.Day16Solver;
+import org.example.Solution.day17.Day17Solver;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -102,7 +103,7 @@ class SolverTest {
 
         @Test
         void inProgress(){
-            inProgressTesting(new Day16Solver());
+            inProgressTesting(new Day17Solver());
         }
 
         void correctLongSolutions(AbstractDayXXSolver<Long> solver, Long answerPartOne, Long answerPartTwo) {
@@ -114,8 +115,12 @@ class SolverTest {
             assertThat(solver.partTwoSolution()).isEqualTo(answerPartTwo);
         }
         void inProgressTesting(AbstractDayXXSolver<Long> solver){
-            System.out.println(solver.partOneSolution());
-            System.out.println(solver.partTwoSolution());
+            System.out.println("-------PART-1-------");
+            System.out.println("ANSWER PART ONE: " + solver.partOneSolution());
+            System.out.println("-------PART-1-------\n");
+            System.out.println("-------PART-2-------");
+            System.out.println("ANSWER PART TWO: " + solver.partTwoSolution());
+            System.out.println("-------PART-2-------\n");
         }
 
     }
