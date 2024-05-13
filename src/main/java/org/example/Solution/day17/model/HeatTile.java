@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.example.Solution.model.grid.GridElement;
 
 @Getter
-
 public class HeatTile extends GridElement {
     private final long heat;
 

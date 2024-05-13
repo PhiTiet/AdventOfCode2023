@@ -92,17 +92,17 @@ class SolverTest {
         }
 
         @Test
-        void dayFifteen(){
+        void dayFifteen() {
             correctIntegerSolutions(new Day15Solver(), 519603, 244342);
         }
 
         @Test
-        void daySixteen(){
+        void daySixteen() {
             correctLongSolutions(new Day16Solver(), 7884L, 8185L);
         }
 
         @Test
-        void inProgress(){
+        void inProgress() {
             inProgressTesting(new Day17Solver());
         }
 
@@ -110,11 +110,13 @@ class SolverTest {
             assertThat(solver.partOneSolution()).isEqualTo(answerPartOne);
             assertThat(solver.partTwoSolution()).isEqualTo(answerPartTwo);
         }
+
         void correctIntegerSolutions(AbstractDayXXSolver<Integer> solver, Integer answerPartOne, Integer answerPartTwo) {
             assertThat(solver.partOneSolution()).isEqualTo(answerPartOne);
             assertThat(solver.partTwoSolution()).isEqualTo(answerPartTwo);
         }
-        void inProgressTesting(AbstractDayXXSolver<Long> solver){
+
+        void inProgressTesting(AbstractDayXXSolver<Long> solver) {
             System.out.println("-------PART-1-------");
             System.out.println("ANSWER PART ONE: " + solver.partOneSolution());
             System.out.println("-------PART-1-------\n");
