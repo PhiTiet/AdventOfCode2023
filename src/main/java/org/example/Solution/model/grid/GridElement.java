@@ -22,9 +22,9 @@ public class GridElement implements Comparable<GridElement> {
     }
 
     public long getX(){
-        return position.x();
+        return position.getX();
     }
     public long getY(){
-        return position.y();
+        return position.getY();
     }
 }

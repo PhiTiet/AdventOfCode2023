@@ -1,29 +1,34 @@
 package org.example.Solution.day16.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+import org.example.Solution.model.grid.Position;
 import org.example.Solution.utils.model.Direction;
 
-@AllArgsConstructor
 @Getter
+@Setter
 public class LightBeam {
     private Direction direction;
-    private long x;
-    private long y;
+    private Position position;
+
+    public LightBeam(Direction direction) {
+        this.direction = direction;
+        position = new Position();
+    }
 
     public void travel(){
         switch(direction){
             case NORTH -> {
-                y--;
+                position.decrementY();
             }
             case EAST -> {
-                x++;
+                position.incrementX();
             }
             case SOUTH -> {
-                y++;
+                position.incrementY();
             }
             case WEST -> {
-                x--;
+                position.decrementX();
             }
         }
     }

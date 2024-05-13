@@ -14,7 +14,7 @@ import static org.example.Solution.utils.ArrayListUtils.ArrayListOf;
 public class Day16Solver extends AbstractDayXXSolver<Long> {
     private final Grid<Mirror> grid = new MirrorGrid(getDefaultPuzzleInputLines());
 
-    private LightBeam initalLightbeam = new LightBeam(Direction.EAST, 0 ,0);
+    private LightBeam initalLightbeam = new LightBeam(Direction.EAST);
     private ArrayList<LightBeam> lightbeams = ArrayListOf(initalLightbeam);
     private ArrayList<LightBeam> newLightBeams = new ArrayList<>();
 
