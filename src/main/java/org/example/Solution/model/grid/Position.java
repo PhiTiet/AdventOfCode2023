@@ -11,6 +11,10 @@ public class Position implements Comparable<Position> {
     private long x;
     private long y;
 
+    public Position(Position position){
+        x = position.getX();
+        y = position.getY();
+    }
     public void incrementY(){
         y++;
     }

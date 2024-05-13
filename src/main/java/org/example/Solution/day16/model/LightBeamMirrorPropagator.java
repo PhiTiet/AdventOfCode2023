@@ -1,12 +1,14 @@
 package org.example.Solution.day16.model;
 
+import org.example.Solution.model.grid.Position;
+
 import java.util.ArrayList;
 
 import static org.example.Solution.utils.ArrayListUtils.ArrayListOf;
 import static org.example.Solution.utils.model.Direction.*;
 
-public class LightbeamMirrorTraverser {
-    public ArrayList<LightBeam> resultingLightbeams(MirrorType mirrorType, LightBeam lightBeam){
+public class LightBeamMirrorPropagator {
+    public ArrayList<LightBeam> resultingLightBeams(MirrorType mirrorType, LightBeam lightBeam){
         var currentDirection = lightBeam.getDirection();
         var currentPosition = lightBeam.getPosition();
 
@@ -34,13 +36,13 @@ public class LightbeamMirrorTraverser {
                 if (goingVertically){
                     yield unaffected;
                 }
-                yield ArrayListOf(new LightBeam(NORTH, currentPosition), new LightBeam(SOUTH, currentPosition));
+                yield ArrayListOf(new LightBeam(NORTH, new Position(currentPosition)), new LightBeam(SOUTH, new Position(currentPosition)));
             }
             case HORIZONTAL -> {
                 if(!goingVertically){
                     yield unaffected;
                 }
-                yield ArrayListOf(new LightBeam(WEST, currentPosition), new LightBeam(EAST, currentPosition));
+                yield ArrayListOf(new LightBeam(WEST, new Position(currentPosition)), new LightBeam(EAST, new Position(currentPosition)));
             }
         };
     }
