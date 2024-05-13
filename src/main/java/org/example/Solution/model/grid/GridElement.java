@@ -5,18 +5,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
 @Setter
+@AllArgsConstructor
 public class GridElement implements Comparable<GridElement> {
-    private long x;
-    private long y;
+    private Position position;
     private String symbol;
 
+    public GridElement(long x, long y, String symbol){
+        this.position = new Position(x,y);
+        this.symbol = symbol;
+    }
+
     @Override
-    public int compareTo(GridElement other) {
-        if (y == other.y) {
-            return Long.compare(x, other.getX());
-        }
-        return Long.compare(y, other.y);
+    public int compareTo(GridElement o) {
+        return position.compareTo(o.getPosition());
+    }
+
+    public long getX(){
+        return position.x();
+    }
+    public long getY(){
+        return position.y();
     }
 }
