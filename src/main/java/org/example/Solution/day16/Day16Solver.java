@@ -18,10 +18,10 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partOneSolution() {
-        return getEnergizedCountAfterPropogatingLight(ArrayListOf(new LightBeam(Direction.SOUTH, new Position(0, 0))));
+        return getEnergizedCountAfterPropagatingLight(ArrayListOf(new LightBeam(Direction.SOUTH, new Position(0, 0))));
     }
 
-    private Long getEnergizedCountAfterPropogatingLight(ArrayList<LightBeam> lightBeams) {
+    private Long getEnergizedCountAfterPropagatingLight(ArrayList<LightBeam> lightBeams) {
         ArrayList<LightBeam> newLightBeams = new ArrayList<>();
         grid = new MirrorGrid(getDefaultPuzzleInputLines());
         do {
@@ -61,7 +61,7 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
             possibleInitialLightBeams.add(new LightBeam(Direction.EAST, new Position(0, i)));
         }
         return possibleInitialLightBeams.stream()
-                .map(b -> getEnergizedCountAfterPropogatingLight(ArrayListOf(b)))
+                .map(b -> getEnergizedCountAfterPropagatingLight(ArrayListOf(b)))
                 .max(Long::compareTo)
                 .orElseThrow();
     }
