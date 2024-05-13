@@ -15,7 +15,6 @@ import static org.example.Solution.utils.ArrayListUtils.ArrayListOf;
 public class Day16Solver extends AbstractDayXXSolver<Long> {
     private MirrorGrid grid;
     private final LightBeamMirrorPropagator lightbeamMirrorPropogator = new LightBeamMirrorPropagator();
-    private ArrayList<LightBeam> newLightBeams = new ArrayList<>();
 
     @Override
     public Long partOneSolution() {
@@ -23,6 +22,7 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
     }
 
     private Long getEnergizedCountAfterPropogatingLight(ArrayList<LightBeam> lightBeams) {
+        ArrayList<LightBeam> newLightBeams = new ArrayList<>();
         grid = new MirrorGrid(getDefaultPuzzleInputLines());
         do {
             for (var lightBeam : lightBeams) {
