@@ -9,6 +9,8 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
     @Override
     public Long partOneSolution() {
         heatGrid.print();
+        //Idea: before a new path is generated, check if it has already been passed.
+        // If a path already was there before, do not branch left and right, only forward once
         return null;
     }
 
