@@ -96,6 +96,11 @@ class SolverTest {
         }
 
         @Test
+        void daySixteen(){
+            correctLongSolutions(new Day16Solver(), 7884L, 8185L);
+        }
+
+        @Test
         void inProgress(){
             inProgressTesting(new Day16Solver());
         }

@@ -24,7 +24,7 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
     private Long getEnergizedCountAfterPropagatingLight(ArrayList<LightBeam> lightBeams) {
         ArrayList<LightBeam> newLightBeams = new ArrayList<>();
         grid = new MirrorGrid(getDefaultPuzzleInputLines());
-        do {
+        while (!lightBeams.isEmpty()) {
             for (var lightBeam : lightBeams) {
                 var energizedBy = grid.getElementAt(lightBeam.getPosition()).getEnergizedBy();
 
@@ -46,21 +46,22 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
 
             lightBeams = newLightBeams;
             newLightBeams = new ArrayList<>();
-        } while (!lightBeams.isEmpty());
+        }
         return grid.getElements().stream().filter(Mirror::isEnergized).count();
     }
 
     @Override
     public Long partTwoSolution() {
-        var possibleInitialLightBeams = new ArrayList<LightBeam>();
+        var initialLightBeams = new ArrayList<LightBeam>();
         int gridSize = grid.getGridSize();
+
         for (int i = 0; i < gridSize; i++) {
-            possibleInitialLightBeams.add(new LightBeam(Direction.SOUTH, new Position(i, 0)));
-            possibleInitialLightBeams.add(new LightBeam(Direction.NORTH, new Position(i, gridSize - 1)));
-            possibleInitialLightBeams.add(new LightBeam(Direction.WEST, new Position(gridSize - 1, i)));
-            possibleInitialLightBeams.add(new LightBeam(Direction.EAST, new Position(0, i)));
+            initialLightBeams.add(new LightBeam(Direction.SOUTH, new Position(i, 0)));
+            initialLightBeams.add(new LightBeam(Direction.NORTH, new Position(i, gridSize - 1)));
+            initialLightBeams.add(new LightBeam(Direction.WEST, new Position(gridSize - 1, i)));
+            initialLightBeams.add(new LightBeam(Direction.EAST, new Position(0, i)));
         }
-        return possibleInitialLightBeams.stream()
+        return initialLightBeams.stream()
                 .map(b -> getEnergizedCountAfterPropagatingLight(ArrayListOf(b)))
                 .max(Long::compareTo)
                 .orElseThrow();
