@@ -14,7 +14,7 @@ import static org.example.Solution.utils.ArrayListUtils.ArrayListOf;
 
 public class Day16Solver extends AbstractDayXXSolver<Long> {
     private MirrorGrid grid;
-    private final LightBeamMirrorPropagator lightbeamMirrorPropogator = new LightBeamMirrorPropagator();
+    private final LightBeamMirrorPropagator lightBeamMirrorPropagator = new LightBeamMirrorPropagator();
 
     @Override
     public Long partOneSolution() {
@@ -28,22 +28,22 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
             for (var lightBeam : lightBeams) {
                 var energizedBy = grid.getElementAt(lightBeam.getPosition()).getEnergizedBy();
 
-                if (energizedBy.contains(lightBeam.getDirection())){
+                if (energizedBy.contains(lightBeam.getDirection())) {
                     continue;
                 }
                 energizedBy.add(lightBeam.getDirection());
 
                 lightBeam.travel();
                 Position nextPosition = lightBeam.getPosition();
-                if ((nextPosition.getX()) >= grid.getGridSize()  || (nextPosition.getY()) >= grid.getGridSize()
+                if ((nextPosition.getX()) >= grid.getGridSize() || (nextPosition.getY()) >= grid.getGridSize()
                         || nextPosition.getX() < 0 || nextPosition.getY() < 0) {
                     continue;
                 }
                 var nextMirror = grid.getElementAt(nextPosition).getMirrorType();
-                var nextLightBeams = lightbeamMirrorPropogator.resultingLightBeams(nextMirror, lightBeam);
+                var nextLightBeams = lightBeamMirrorPropagator.resultingLightBeams(nextMirror, lightBeam);
                 newLightBeams.addAll(nextLightBeams);
             }
-            
+
             lightBeams = newLightBeams;
             newLightBeams = new ArrayList<>();
         } while (!lightBeams.isEmpty());
@@ -55,9 +55,9 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
         var possibleInitialLightBeams = new ArrayList<LightBeam>();
         int gridSize = grid.getGridSize();
         for (int i = 0; i < gridSize; i++) {
-            possibleInitialLightBeams.add(new LightBeam(Direction.SOUTH, new Position(i,0)));
-            possibleInitialLightBeams.add(new LightBeam(Direction.NORTH, new Position(i, gridSize -1)));
-            possibleInitialLightBeams.add(new LightBeam(Direction.WEST, new Position(gridSize -1, i)));
+            possibleInitialLightBeams.add(new LightBeam(Direction.SOUTH, new Position(i, 0)));
+            possibleInitialLightBeams.add(new LightBeam(Direction.NORTH, new Position(i, gridSize - 1)));
+            possibleInitialLightBeams.add(new LightBeam(Direction.WEST, new Position(gridSize - 1, i)));
             possibleInitialLightBeams.add(new LightBeam(Direction.EAST, new Position(0, i)));
         }
         return possibleInitialLightBeams.stream()
