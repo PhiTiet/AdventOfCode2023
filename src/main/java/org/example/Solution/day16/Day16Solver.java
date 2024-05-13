@@ -22,6 +22,9 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
     public Long partOneSolution() {
         for (var lightBeam: lightbeams){
 
+
+            lightbeams = newLightBeams;
+            newLightBeams = new ArrayList<>();
         }
         grid.print();
         return null;

@@ -16,6 +16,11 @@ public class LightBeam {
         position = new Position();
     }
 
+    public Position getNextPosition(){
+        travel();
+        return position;
+    }
+
     public void travel(){
         switch(direction){
             case NORTH -> {

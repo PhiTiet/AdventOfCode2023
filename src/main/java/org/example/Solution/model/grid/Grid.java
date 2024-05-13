@@ -25,6 +25,12 @@ public class Grid<E extends GridElement> {
             }
         }
     }
+    public E getElementAt(Position position){
+        return getElementAt(position.getX(), position.getY());
+    }
+    public void setElementAt(Position position, E type){
+        setElementAt(position.getX(), position.getY(), type);
+    }
 
     public E getElementAt(long x, long y) {
         return elements.get(getIndex((int) x, (int) y));
