@@ -16,9 +16,13 @@ public class Day16Solver extends AbstractDayXXSolver<Long> {
 
     private LightBeam initalLightbeam = new LightBeam(Direction.EAST, 0 ,0);
     private ArrayList<LightBeam> lightbeams = ArrayListOf(initalLightbeam);
+    private ArrayList<LightBeam> newLightBeams = new ArrayList<>();
 
     @Override
     public Long partOneSolution() {
+        for (var lightBeam: lightbeams){
+
+        }
         grid.print();
         return null;
     }
