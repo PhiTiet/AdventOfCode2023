@@ -10,11 +10,11 @@ public class MirrorGrid extends Grid<Mirror> {
         super(lines, Mirror.class);
     }
 
-    public MirrorType getMirrorTypeAt(Position position){
+    public MirrorType getMirrorTypeAt(Position position) {
         return getElementAt(position).getMirrorType();
     }
 
-    public void printEnergized(){
+    public void printEnergized() {
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
                 Mirror element = elements.get(getIndex(x, y));

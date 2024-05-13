@@ -18,8 +18,8 @@ public class LightBeam {
         position = new Position();
     }
 
-    public void travel(){
-        switch(direction){
+    public void travel() {
+        switch (direction) {
             case NORTH -> {
                 position.decrementY();
             }

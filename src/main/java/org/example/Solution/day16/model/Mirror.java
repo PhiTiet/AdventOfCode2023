@@ -14,7 +14,7 @@ public class Mirror extends GridElement {
     public Mirror(long x, long y, String symbol) {
         super(x, y, symbol);
         energizedBy = new ArrayList<>();
-        mirrorType = switch(symbol){
+        mirrorType = switch (symbol) {
             case "." -> MirrorType.EMPTY;
             case "-" -> MirrorType.HORIZONTAL;
             case "|" -> MirrorType.VERTICAL;
@@ -23,7 +23,8 @@ public class Mirror extends GridElement {
             default -> throw new IllegalStateException();
         };
     }
-    public boolean isEnergized(){
+
+    public boolean isEnergized() {
         return !energizedBy.isEmpty();
     }
 }
