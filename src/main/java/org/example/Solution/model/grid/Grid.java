@@ -25,10 +25,12 @@ public class Grid<E extends GridElement> {
             }
         }
     }
-    public E getElementAt(Position position){
+
+    public E getElementAt(Position position) {
         return getElementAt(position.getX(), position.getY());
     }
-    public void setElementAt(Position position, E type){
+
+    public void setElementAt(Position position, E type) {
         setElementAt(position.getX(), position.getY(), type);
     }
 
@@ -47,8 +49,7 @@ public class Grid<E extends GridElement> {
     public void print() {
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
-                int index = getIndex(x, y);
-                GridElement element = elements.get(index);
+                GridElement element = elements.get(getIndex(x, y));
                 System.out.print(element.getSymbol() + " ");
             }
             System.out.println();
