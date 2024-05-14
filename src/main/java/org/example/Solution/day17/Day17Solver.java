@@ -30,10 +30,9 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
         var newPaths = new ArrayList<Path>();
         var results = new ArrayList<Path>();
         while (!paths.isEmpty()) {
-            System.out.println(paths.size());
             for (var path : paths) {
 
-                if ((path.getTotalHeat() > 980)) {
+                if ((path.getTotalHeat() > 1012)) {
                     continue;
                 }
                 if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())) {
@@ -48,11 +47,8 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
                     continue;
                 }
 
-                var passedRecords = currentTile.getPassedRecordsForDirection(path.getDirection());
-                if (!passedRecords.isEmpty()) {
-                    if (passedRecords.stream().anyMatch(a -> (a.totalHeat() < path.getTotalHeat() && a.stepsTaken() < path.getStepsTaken()))) {
-                        continue;
-                    }
+                if (currentTile.getPassedRecords().shouldSkip(path)){
+                    continue;
                 }
                 Path left = new Path(path).withStepsTaken(0L).withDirection(getTurnLeft(path.getDirection()));
                 Path right = new Path(path).withStepsTaken(0L).withDirection(getTurnRight(path.getDirection()));
@@ -80,15 +76,8 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
         if (!path.canMoveForward() || path.willBeOutOfRange(grid.getGridSize())) {
             return;
         }
-
+        currentTile.getPassedRecords().addRecord(path);
         path.addHeat(currentTile.getHeat());
-        PassedRecord passedRecord = PassedRecord.builder()
-                .direction(path.getDirection())
-                .stepsTaken(path.getStepsTaken())
-                .totalHeat(path.getTotalHeat())
-                .build();
-
-        currentTile.getPassedRecordsForDirection(path.getDirection()).add(passedRecord);
         path.travel();
         newPaths.add(path);
     }
