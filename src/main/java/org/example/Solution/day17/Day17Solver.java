@@ -17,36 +17,31 @@ import java.util.stream.Collectors;
 import static org.example.Solution.utils.model.Direction.*;
 
 public class Day17Solver extends AbstractDayXXSolver<Long> {
-    private HeatGrid grid = new HeatGrid(getDefaultPuzzleInputLines());
-    private final Position targetPosition = new Position(grid.getGridSize() -1, grid.getGridSize() -1);
+    private final HeatGrid grid = new HeatGrid(getDefaultPuzzleInputLines());
+    private final Position targetPosition = new Position(grid.getGridSize() - 1, grid.getGridSize() - 1);
 
     @Override
     public Long partOneSolution() {
-        long pathHeuristic = 3 * grid.getElementsWhere(a -> a.getX() == 0 || a.getY() == grid.getGridSize() -1)
-                .stream()
-                .map(HeatTile::getHeat)
-                .reduce(0L, Long::sum);
-
-        var path = traverseGrid(ArrayListUtils.ArrayListOf(new Path(EAST, new Position())), pathHeuristic);
+        var path = traverseGrid(ArrayListUtils.ArrayListOf(new Path(EAST, new Position())));
         var minWithInitialSquare = path.stream().min(Long::compareTo).orElseThrow();
 
-        return minWithInitialSquare - grid.getElementAt(0L,0L).getHeat();
+        return minWithInitialSquare - grid.getElementAt(0L, 0L).getHeat();
     }
 
-    private List<Long> traverseGrid(ArrayList<Path> paths, long pathHeuristic){
+    private List<Long> traverseGrid(ArrayList<Path> paths) {
         var newPaths = new ArrayList<Path>();
         var results = new ArrayList<Path>();
-        while(!paths.isEmpty()){
-            for (var path : paths){
-                if ((path.getTotalHeat() > pathHeuristic)){
+        while (!paths.isEmpty()) {
+            for (var path : paths) {
+                if ((path.getTotalHeat() > 1012)) {
                     continue;
                 }
-                if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())){
+                if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())) {
                     continue;
                 }
 
                 HeatTile currentTile = grid.getElementAt(path.getPosition());
-                if (path.getPosition().equals(targetPosition)){
+                if (path.getPosition().equals(targetPosition)) {
                     path.addToTotal(currentTile.getHeat());
                     path.getPrevious().add(currentTile.getPosition());
                     results.add(path);
@@ -54,10 +49,11 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
                 }
 
                 var passedRecords = currentTile.getPassedRecordsForDirection(path.getDirection());
-                if (!passedRecords.isEmpty()){
-                    if(passedRecords.stream().anyMatch(a -> a.totalHeat() <= path.getTotalHeat() && a.stepsTaken() <= path.getStepsTaken())){
+                if (!passedRecords.isEmpty()) {
+                    if (passedRecords.stream().anyMatch(a -> a.totalHeat() <= path.getTotalHeat() && a.stepsTaken() <= path.getStepsTaken())) {
                         continue;
-                    };
+                    }
+                    ;
                 }
                 Path left = new Path(path).withStepsTaken(0L).withDirection(getTurnLeft(path.getDirection()));
                 Path right = new Path(path).withStepsTaken(0L).withDirection(getTurnRight(path.getDirection()));
@@ -71,7 +67,7 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             newPaths = new ArrayList<>();
         }
         var test = results.stream().filter(a -> a.getTotalHeat() == 1012).findFirst().get();
-        for (var t : test.getPrevious()){
+        for (var t : test.getPrevious()) {
             grid.getElementAt(t).setSymbol("#");
         }
         grid.print();
@@ -80,7 +76,7 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
     }
 
     private void travel(Path path, HeatTile currentTile, ArrayList<Path> newPaths) {
-        if (!path.canMoveForward() || path.willBeOutOfRange(grid.getGridSize())){
+        if (!path.canMoveForward() || path.willBeOutOfRange(grid.getGridSize())) {
             return;
         }
 
