@@ -70,7 +70,7 @@ public class Path {
         };
     }
 
-    public void addToTotal(long heat) {
+    public void addHeat(long heat) {
         totalHeat += heat;
     }
 }

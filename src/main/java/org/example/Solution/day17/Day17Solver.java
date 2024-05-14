@@ -43,7 +43,7 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
                 HeatTile currentTile = grid.getElementAt(path.getPosition());
                 if (path.getPosition().equals(targetPosition)) {
-                    path.addToTotal(currentTile.getHeat());
+                    path.addHeat(currentTile.getHeat());
                     path.getPrevious().add(currentTile.getPosition());
                     results.add(path);
                     continue;
@@ -88,7 +88,7 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
         currentTile.getPassedRecordsForDirection(path.getDirection()).add(passedRecord);
         path.travel();
-        path.addToTotal(currentTile.getHeat());
+        path.addHeat(currentTile.getHeat());
         path.getPrevious().add(currentTile.getPosition());
         newPaths.add(path);
     }
