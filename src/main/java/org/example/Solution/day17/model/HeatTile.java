@@ -19,7 +19,6 @@ public class HeatTile extends GridElement {
     private ArrayList<PassedRecord> westPassedRecords;
 
 
-
     public HeatTile(long x, long y, String symbol) {
         super(x, y, symbol);
         heat = Long.parseLong(symbol);
@@ -30,8 +29,8 @@ public class HeatTile extends GridElement {
 
     }
 
-    public ArrayList<PassedRecord> getPassedRecordsForDirection(Direction d){
-        return switch(d){
+    public ArrayList<PassedRecord> getPassedRecordsForDirection(Direction d) {
+        return switch (d) {
             case NORTH -> northPassedRecords;
             case EAST -> eastPassedRecords;
             case SOUTH -> southPassedRecords;

@@ -14,7 +14,8 @@ public enum Direction {
             case SOUTH -> NORTH;
         };
     }
-    public static Direction getTurnRight(Direction d){
+
+    public static Direction getTurnRight(Direction d) {
         return switch (d) {
             case EAST -> SOUTH;
             case WEST -> NORTH;
@@ -22,7 +23,8 @@ public enum Direction {
             case SOUTH -> WEST;
         };
     }
-    public static Direction getTurnLeft(Direction d){
+
+    public static Direction getTurnLeft(Direction d) {
         return switch (d) {
             case EAST -> NORTH;
             case WEST -> SOUTH;

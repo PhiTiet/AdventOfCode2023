@@ -11,8 +11,8 @@ public class GridElement implements Comparable<GridElement> {
     private Position position;
     private String symbol;
 
-    public GridElement(long x, long y, String symbol){
-        this.position = new Position(x,y);
+    public GridElement(long x, long y, String symbol) {
+        this.position = new Position(x, y);
         this.symbol = symbol;
     }
 
@@ -21,10 +21,11 @@ public class GridElement implements Comparable<GridElement> {
         return position.compareTo(o.getPosition());
     }
 
-    public long getX(){
+    public long getX() {
         return position.getX();
     }
-    public long getY(){
+
+    public long getY() {
         return position.getY();
     }
 }

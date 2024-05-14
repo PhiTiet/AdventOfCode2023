@@ -54,7 +54,6 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
                     if (passedRecords.stream().anyMatch(a -> a.totalHeat() <= path.getTotalHeat() && a.stepsTaken() <= path.getStepsTaken())) {
                         continue;
                     }
-                    ;
                 }
                 Path left = new Path(path).withStepsTaken(0L).withDirection(getTurnLeft(path.getDirection()));
                 Path right = new Path(path).withStepsTaken(0L).withDirection(getTurnRight(path.getDirection()));

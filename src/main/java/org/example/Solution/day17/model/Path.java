@@ -22,7 +22,8 @@ public class Path {
         this.direction = direction;
         this.position = position;
     }
-    public Path(Path path){
+
+    public Path(Path path) {
         position = new Position(path.getPosition());
         direction = path.getDirection();
         totalHeat = path.getTotalHeat();
@@ -60,15 +61,16 @@ public class Path {
         return stepsTaken < 3;
     }
 
-    public boolean willBeOutOfRange(long gridSize){
-        return switch (direction){
+    public boolean willBeOutOfRange(long gridSize) {
+        return switch (direction) {
             case NORTH -> position.getY() - 1 < 0;
             case EAST -> position.getX() + 1 > gridSize - 1;
             case SOUTH -> position.getY() + 1 > gridSize - 1;
             case WEST -> position.getX() - 1 < 0;
         };
     }
-    public void addToTotal(long heat){
+
+    public void addToTotal(long heat) {
         totalHeat += heat;
     }
 }
