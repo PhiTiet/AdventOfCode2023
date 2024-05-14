@@ -11,6 +11,7 @@ import org.example.Solution.utils.ArrayListUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 
@@ -66,11 +67,11 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             paths = newPaths;
             newPaths = new ArrayList<>();
         }
-        var test = results.stream().filter(a -> a.getTotalHeat() == 1012).findFirst().get();
-        for (var t : test.getPrevious()) {
-            grid.getElementAt(t).setSymbol("#");
-        }
-        grid.print();
+        var sortedHeatsAndPaths = new TreeMap<>(results.stream().collect(Collectors.groupingBy(Path::getTotalHeat)));
+        List<Position> fastestRoute = sortedHeatsAndPaths.firstEntry().getValue().getFirst().getPrevious();
+
+
+        grid.printElements(fastestRoute, "#");
 
         return results.stream().map(Path::getTotalHeat).toList();
     }

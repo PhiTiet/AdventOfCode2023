@@ -55,6 +55,16 @@ public class Grid<E extends GridElement> {
             System.out.println();
         }
     }
+    public void printElements(List<Position> positions, String s) {
+        for (int y = 0; y < gridSize; y++) {
+            for (int x = 0; x < gridSize; x++) {
+                GridElement element = elements.get(getIndex(x, y));
+                String symbol = positions.contains(element.getPosition()) ? s : element.getSymbol();
+                System.out.print(symbol + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public void sortElements() {
         Collections.sort(elements);
