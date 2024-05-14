@@ -23,13 +23,10 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
     @Override
     public Long partOneSolution() {
-        var path = traverseGrid(ArrayListUtils.ArrayListOf(new Path(EAST, new Position())));
-        var minWithInitialSquare = path.stream().min(Long::compareTo).orElseThrow();
-
-        return minWithInitialSquare - grid.getElementAt(0L, 0L).getHeat();
+        return findShortedPath(ArrayListUtils.ArrayListOf(new Path(EAST, new Position())));
     }
 
-    private List<Long> traverseGrid(ArrayList<Path> paths) {
+    private Long findShortedPath(ArrayList<Path> paths) {
         var newPaths = new ArrayList<Path>();
         var results = new ArrayList<Path>();
         while (!paths.isEmpty()) {
@@ -72,7 +69,9 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
         grid.printElements(fastestRoute, "#");
 
-        return results.stream().map(Path::getTotalHeat).toList();
+        return results.stream()
+                .map(Path::getTotalHeat)
+                .min(Long::compareTo).orElseThrow() - grid.getElementAt(0L, 0L).getHeat();
     }
 
     private void travel(Path path, HeatTile currentTile, ArrayList<Path> newPaths) {
