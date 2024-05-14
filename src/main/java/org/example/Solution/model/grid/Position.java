@@ -34,4 +34,8 @@ public class Position implements Comparable<Position> {
             }
             return Long.compare(y, other.y);
         }
+
+        public boolean equals(Position other){
+            return x == other.getX() && y == other.getY();
+        }
 }
