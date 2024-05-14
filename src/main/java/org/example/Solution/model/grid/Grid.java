@@ -60,8 +60,8 @@ public class Grid<E extends GridElement> {
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
                 GridElement element = elements.get(getIndex(x, y));
-                String symbol = positions.contains(element.getPosition()) ? s : element.getSymbol();
-                System.out.print(symbol + " ");
+                var contains = positions.stream().anyMatch(a -> a.getX() == element.getX() && a.getY() == element.getY());
+                System.out.print((contains ? s : element.getSymbol()) + " ");
             }
             System.out.println();
         }

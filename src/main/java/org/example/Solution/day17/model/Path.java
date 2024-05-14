@@ -32,6 +32,7 @@ public class Path {
     }
 
     public void travel() {
+        previous.add(new Position(position));
         switch (direction) {
             case NORTH -> {
                 position.decrementY();

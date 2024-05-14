@@ -30,8 +30,10 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
         var newPaths = new ArrayList<Path>();
         var results = new ArrayList<Path>();
         while (!paths.isEmpty()) {
+            System.out.println(paths.size());
             for (var path : paths) {
-                if ((path.getTotalHeat() > 1012)) {
+
+                if ((path.getTotalHeat() > 980)) {
                     continue;
                 }
                 if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())) {
@@ -40,15 +42,15 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
                 HeatTile currentTile = grid.getElementAt(path.getPosition());
                 if (path.getPosition().equals(targetPosition)) {
+                    path.getPrevious().add(new Position(path.getPosition()));
                     path.addHeat(currentTile.getHeat());
-                    path.getPrevious().add(currentTile.getPosition());
                     results.add(path);
                     continue;
                 }
 
                 var passedRecords = currentTile.getPassedRecordsForDirection(path.getDirection());
                 if (!passedRecords.isEmpty()) {
-                    if (passedRecords.stream().anyMatch(a -> a.totalHeat() <= path.getTotalHeat() && a.stepsTaken() <= path.getStepsTaken())) {
+                    if (passedRecords.stream().anyMatch(a -> (a.totalHeat() < path.getTotalHeat() && a.stepsTaken() < path.getStepsTaken()))) {
                         continue;
                     }
                 }
@@ -79,6 +81,7 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             return;
         }
 
+        path.addHeat(currentTile.getHeat());
         PassedRecord passedRecord = PassedRecord.builder()
                 .direction(path.getDirection())
                 .stepsTaken(path.getStepsTaken())
@@ -87,8 +90,6 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
         currentTile.getPassedRecordsForDirection(path.getDirection()).add(passedRecord);
         path.travel();
-        path.addHeat(currentTile.getHeat());
-        path.getPrevious().add(currentTile.getPosition());
         newPaths.add(path);
     }
 
