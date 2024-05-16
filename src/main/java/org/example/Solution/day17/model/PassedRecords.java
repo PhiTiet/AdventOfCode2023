@@ -22,7 +22,7 @@ public class PassedRecords {
             return false;
         }
         var records = passedByRecords.get(path.getDirection());
-        return records.stream().anyMatch(a -> a.totalHeat() <= path.getTotalHeat() && a.stepsTaken() <= path.getStepsTaken());
+        return records.stream().anyMatch(a -> a.totalHeat() < path.getTotalHeat() && a.stepsTaken() <= path.getStepsTaken());
     }
 
     public void addRecord(Path path) {

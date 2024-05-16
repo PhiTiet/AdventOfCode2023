@@ -3,17 +3,14 @@ package org.example.Solution.day17;
 import org.example.Solution.AbstractDayXXSolver;
 import org.example.Solution.day17.model.HeatGrid;
 import org.example.Solution.day17.model.HeatTile;
-import org.example.Solution.day17.model.PassedRecord;
 import org.example.Solution.day17.model.Path;
 import org.example.Solution.model.grid.Position;
 import org.example.Solution.utils.ArrayListUtils;
-
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-
 
 import static org.example.Solution.utils.model.Direction.*;
 
@@ -35,9 +32,9 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
                 if ((path.getTotalHeat() > 1012)) {
                     continue;
                 }
-                if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())) {
-                    continue;
-                }
+//                if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())) {
+//                    continue;
+//                }
 
                 HeatTile currentTile = grid.getElementAt(path.getPosition());
                 if (path.getPosition().equals(targetPosition)) {
@@ -62,11 +59,11 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             newPaths = new ArrayList<>();
         }
         var sortedHeatsAndPaths = new TreeMap<>(results.stream().collect(Collectors.groupingBy(Path::getTotalHeat)));
-        List<Position> fastestRoute = sortedHeatsAndPaths.firstEntry().getValue().getFirst().getPrevious();
+        List<ArrayList<Position>> fastestRoutes = sortedHeatsAndPaths.firstEntry().getValue().stream().map( Path::getPrevious).toList();
 
-
-        grid.printElements(fastestRoute, "#");
-
+        for (var fastestRoute : fastestRoutes) {
+            grid.printElements(fastestRoute, "#");
+        }
         return results.stream()
                 .map(Path::getTotalHeat)
                 .min(Long::compareTo).orElseThrow() - grid.getElementAt(0L, 0L).getHeat();

@@ -57,6 +57,7 @@ public class Grid<E extends GridElement> {
     }
 
     public void printElements(List<Position> positions, String s) {
+        System.out.println("---------------------------");
         for (int y = 0; y < gridSize; y++) {
             for (int x = 0; x < gridSize; x++) {
                 GridElement element = elements.get(getIndex(x, y));
@@ -65,6 +66,7 @@ public class Grid<E extends GridElement> {
             }
             System.out.println();
         }
+        System.out.println("---------------------------");
     }
 
     public void sortElements() {
