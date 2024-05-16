@@ -31,9 +31,10 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
         long totalSteps = 0L;
         long prune1, prune2, prune3, prune4;
 
+
         while (!paths.isEmpty()) {
             prune1 = 0; prune2 = 0; prune3 = 0; prune4 = 0;
-
+            long oldpathSize = paths.size();
             for (var path : paths) {
                 if (path.getTotalHeat() > 1012 ) {
                     prune1++;
@@ -75,10 +76,13 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             newPaths = new ArrayList<>();
             totalSteps++;
             System.out.println("Paths size: " + paths.size());
-            System.out.println("First path heat: " + paths.getFirst().getTotalHeat());
+            if (!paths.isEmpty()) {
+                System.out.println("First path heat: " + paths.getFirst().getTotalHeat());
+            }
+
             System.out.println("Steps taken: " + totalSteps);
             long prunedThisIteration = prune1 + prune2 + prune3 + prune4;
-            System.out.println("percentage pruned this round: " + Math.round((float)prunedThisIteration / (float)paths.size() * 100) + "%");
+            System.out.println("percentage pruned this round: " + Math.round((float)prunedThisIteration / (float)oldpathSize * 100) + "%");
             System.out.println("***********************");
         }
 //        var sortedHeatsAndPaths = new TreeMap<>(results.stream().collect(Collectors.groupingBy(Path::getTotalHeat)));
