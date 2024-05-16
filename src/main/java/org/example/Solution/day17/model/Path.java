@@ -4,8 +4,6 @@ import lombok.*;
 import org.example.Solution.model.grid.Position;
 import org.example.Solution.utils.model.Direction;
 
-import java.util.ArrayList;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,7 +13,7 @@ public class Path {
     private Position position;
     private Direction direction;
     long totalHeat;
-    private ArrayList<Position> previous = new ArrayList<>();
+//    private ArrayList<Position> previous = new ArrayList<>();
     private long stepsTaken = 0L;
 
     public Path(Direction direction, Position position) {
@@ -28,11 +26,11 @@ public class Path {
         direction = path.getDirection();
         totalHeat = path.getTotalHeat();
         stepsTaken = path.getStepsTaken();
-        previous.addAll(path.previous);
+//        previous.addAll(path.previous);
     }
 
     public void travel() {
-        previous.add(new Position(position));
+//        previous.add(new Position(position));
         switch (direction) {
             case NORTH -> {
                 position.decrementY();

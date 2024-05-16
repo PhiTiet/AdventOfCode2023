@@ -9,10 +9,9 @@ import org.example.Solution.utils.ArrayListUtils;
 import org.example.Solution.utils.model.Direction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 import static org.example.Solution.utils.model.Direction.*;
 
@@ -29,27 +28,45 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
         optimizeGridWithDepthFirstSearches();
         var newPaths = new ArrayList<Path>();
         var results = new ArrayList<Path>();
-        while (!paths.isEmpty()) {
-            System.out.println(paths.size());
-            System.out.println(paths.get(0).getTotalHeat());
-            for (var path : paths) {
+        long totalSteps = 0L;
 
-                if ((path.getTotalHeat() > 1012)) {
+        long prune1 = 0;
+        long prune2 = 0;
+        long prune3 = 0;
+        long prune4 = 0;
+        while (!paths.isEmpty()) {
+            System.out.println("Paths size: " + paths.size());
+            System.out.println("First path heat: " + paths.getFirst().getTotalHeat());
+            System.out.println("steps taken: " + totalSteps);
+            System.out.println(prune1 + " - " + prune2 + " - " + prune3 + " - " + prune4);
+
+            for (var path : paths) {
+                if (path.getTotalHeat() > 1012 ) {
+                    prune1++;
                     continue;
                 }
+
                 if (!results.isEmpty() && results.stream().anyMatch(a -> a.getTotalHeat() < path.getTotalHeat())) {
+                    prune2++;
                     continue;
                 }
+
+                if (totalSteps > 180 && (totalSteps - path.getPosition().getSumOfCoordinates()) > totalSteps * 0.07){
+                    prune3++;
+                    continue;
+                }
+
 
                 HeatTile currentTile = grid.getElementAt(path.getPosition());
                 if (path.getPosition().equals(targetPosition)) {
-                    path.getPrevious().add(new Position(path.getPosition()));
+//                    path.getPrevious().add(new Position(path.getPosition()));
                     path.addHeat(currentTile.getHeat());
                     results.add(path);
                     continue;
                 }
 
                 if (currentTile.getPassedRecords().shouldSkip(path)) {
+                    prune4++;
                     continue;
                 }
                 Path left = new Path(path).withStepsTaken(0L).withDirection(getTurnLeft(path.getDirection()));
@@ -62,13 +79,15 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             }
             paths = newPaths;
             newPaths = new ArrayList<>();
+            totalSteps++;
+            System.out.println("------------------------");
         }
-        var sortedHeatsAndPaths = new TreeMap<>(results.stream().collect(Collectors.groupingBy(Path::getTotalHeat)));
-        List<ArrayList<Position>> fastestRoutes = sortedHeatsAndPaths.firstEntry().getValue().stream().map(Path::getPrevious).toList();
-
-        for (var fastestRoute : fastestRoutes) {
-            grid.printElements(fastestRoute, "#");
-        }
+//        var sortedHeatsAndPaths = new TreeMap<>(results.stream().collect(Collectors.groupingBy(Path::getTotalHeat)));
+//        List<ArrayList<Position>> fastestRoutes = sortedHeatsAndPaths.firstEntry().getValue().stream().map(Path::getPrevious).toList();
+//
+//        for (var fastestRoute : fastestRoutes) {
+//            grid.printElements(fastestRoute, "#");
+//        }
         return results.stream()
                 .map(Path::getTotalHeat)
                 .min(Long::compareTo).orElseThrow() - grid.getElementAt(0L, 0L).getHeat();
@@ -76,10 +95,10 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
 
     private void optimizeGridWithDepthFirstSearches() {
         var results = new ArrayList<Path>();
-        var pathToGoal = generatePaths();
-        for (int i = 0; i < 1000 ; i++) {
+        List<List<Direction>> randomPaths = generateRandomPaths();
+        for (List<Direction> randomPath : randomPaths) {
             var path = new Path(EAST, new Position());
-            for (Direction direction : pathToGoal) {
+            for (Direction direction : randomPath) {
                 path = path.withDirection(direction).withStepsTaken(0L);
                 var currentTile = grid.getElementAt(path.getPosition());
                 currentTile.getPassedRecords().addRecord(path);
@@ -92,9 +111,38 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             results.add(path);
         }
 
-//        var paths = results.stream().map(Path::getPrevious).toList();
-//        grid.printElements(paths.getFirst(), "#");
-        System.out.println("Grid initialized with 1000 depth first paths");
+        var minHeat = results.stream().map(Path::getTotalHeat).min(Long::compareTo);
+
+        System.out.println("Grid initialized with a million depth first paths to optimize pruning , most optimal path found: " + minHeat.orElseThrow());
+    }
+
+    private List<List<Direction>> generateRandomPaths() {
+        List<List<Direction>> randomPaths = new ArrayList<>();
+        for (int i = 0; i < 1_000_000; i++) {
+            randomPaths.add(generatePaths());
+        }
+        addEdgePaths(randomPaths);
+        return randomPaths;
+    }
+
+    private void addEdgePaths(List<List<Direction>> randomPaths) {
+        var southEast = new ArrayList<Direction>();
+        for (int i = 0; i < grid.getGridSize(); i++) {
+            for (int j = 0; j < 3; j++) {
+                southEast.add(SOUTH);
+            }
+            southEast.add(EAST);
+        }
+        for (int i = 0; i < grid.getGridSize(); i++) {
+            for (int j = 0; j < 3; j++) {
+                southEast.add(EAST);
+            }
+            southEast.add(SOUTH);
+        }
+        var eastSouth = southEast.subList(0, southEast.size());
+        Collections.reverse(eastSouth);
+        randomPaths.add(southEast);
+        randomPaths.add(eastSouth);
     }
 
     private ArrayList<Direction> generatePaths() {

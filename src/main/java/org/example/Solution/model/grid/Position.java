@@ -32,4 +32,8 @@ public class Position implements Comparable<Position> {
     public boolean equals(Position other) {
         return x == other.getX() && y == other.getY();
     }
+
+    public long getSumOfCoordinates(){
+        return x + y;
+    }
 }
