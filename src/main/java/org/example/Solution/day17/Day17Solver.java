@@ -29,16 +29,10 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
         var newPaths = new ArrayList<Path>();
         var results = new ArrayList<Path>();
         long totalSteps = 0L;
+        long prune1, prune2, prune3, prune4;
 
-        long prune1 = 0;
-        long prune2 = 0;
-        long prune3 = 0;
-        long prune4 = 0;
         while (!paths.isEmpty()) {
-            System.out.println("Paths size: " + paths.size());
-            System.out.println("First path heat: " + paths.getFirst().getTotalHeat());
-            System.out.println("steps taken: " + totalSteps);
-            System.out.println(prune1 + " - " + prune2 + " - " + prune3 + " - " + prune4);
+            prune1 = 0; prune2 = 0; prune3 = 0; prune4 = 0;
 
             for (var path : paths) {
                 if (path.getTotalHeat() > 1012 ) {
@@ -51,7 +45,7 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
                     continue;
                 }
 
-                if (totalSteps > 180 && (totalSteps - path.getPosition().getSumOfCoordinates()) > totalSteps * 0.07){
+                if (totalSteps > 100 && (totalSteps - path.getPosition().getSumOfCoordinates()) > totalSteps * 0.2){
                     prune3++;
                     continue;
                 }
@@ -80,7 +74,12 @@ public class Day17Solver extends AbstractDayXXSolver<Long> {
             paths = newPaths;
             newPaths = new ArrayList<>();
             totalSteps++;
-            System.out.println("------------------------");
+            System.out.println("Paths size: " + paths.size());
+            System.out.println("First path heat: " + paths.getFirst().getTotalHeat());
+            System.out.println("Steps taken: " + totalSteps);
+            long prunedThisIteration = prune1 + prune2 + prune3 + prune4;
+            System.out.println("percentage pruned this round: " + Math.round((float)prunedThisIteration / (float)paths.size() * 100) + "%");
+            System.out.println("***********************");
         }
 //        var sortedHeatsAndPaths = new TreeMap<>(results.stream().collect(Collectors.groupingBy(Path::getTotalHeat)));
 //        List<ArrayList<Position>> fastestRoutes = sortedHeatsAndPaths.firstEntry().getValue().stream().map(Path::getPrevious).toList();
