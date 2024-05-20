@@ -5,7 +5,6 @@ import org.example.Solution.day17.model.HeatGrid;
 import org.example.Solution.day17.model.HeatTile;
 import org.example.Solution.day17.model.Path;
 import org.example.Solution.model.grid.Position;
-import org.example.Solution.utils.ArrayListUtils;
 import org.example.Solution.utils.model.Direction;
 
 import java.util.ArrayList;
@@ -14,14 +13,15 @@ import java.util.List;
 import java.util.Random;
 
 import static org.example.Solution.utils.model.Direction.*;
-
+//TODO: Either optimize more or implement a custom graph & use dijkstra
 public class Day17Solver extends AbstractDayXXSolver<Long> {
     private final HeatGrid grid = new HeatGrid(getDefaultPuzzleInputLines());
     private final Position targetPosition = new Position(grid.getGridSize() - 1, grid.getGridSize() - 1);
 
     @Override
     public Long partOneSolution() {
-        return findShortedPath(ArrayListUtils.ArrayListOf(new Path(EAST, new Position())));
+//        return findShortedPath(ArrayListUtils.ArrayListOf(new Path(EAST, new Position())));
+        return null;
     }
 
     private Long findShortedPath(ArrayList<Path> paths) {

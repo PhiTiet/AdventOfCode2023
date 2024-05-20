@@ -17,6 +17,7 @@ import org.example.Solution.day14.Day14Solver;
 import org.example.Solution.day15.Day15Solver;
 import org.example.Solution.day16.Day16Solver;
 import org.example.Solution.day17.Day17Solver;
+import org.example.Solution.day18.Day18Solver;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -102,8 +103,14 @@ class SolverTest {
         }
 
         @Test
+        void daySeventeen() {
+            correctLongSolutions(new Day17Solver(), null, null);
+        }
+
+
+        @Test
         void inProgress() {
-            inProgressTesting(new Day17Solver());
+            inProgressTesting(new Day18Solver());
         }
 
         void correctLongSolutions(AbstractDayXXSolver<Long> solver, Long answerPartOne, Long answerPartTwo) {
